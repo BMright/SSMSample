@@ -1,0 +1,11 @@
+<decorators defaultdir="/jsp/00decorators">
+	<decorator name="all" page="main.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+	<decorator name="popup" page="mainPopup.jsp">
+		<pattern>/*Popup/*</pattern>
+	</decorator>
+	<excludes>
+		<pattern>/jsp/exclude/*</pattern>
+	</excludes>
+</decorators>

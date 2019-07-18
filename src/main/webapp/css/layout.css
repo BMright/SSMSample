@@ -1,0 +1,221 @@
+/* layout.css布局、版面样式  master.css主要的样式   columns.css专栏模块样式
+================================================================================*/
+/* 书写规范
+　　1.位置属性(position, top, right, z-index, display, float等)
+　　2.大小(width, height, padding, margin)
+　　3.文字系列(font, line-height, letter-spacing, color, text-align等)
+　　4.背景(background, border等)
+　　5.其他(animation, transition等)
+　　6.@Author: dinghui
+--------------------------------------------------------------------------------*/
+/* 全局样式
+--------------------------------------------------------------------------------*/
+/*@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);*/
+body,html{min-height:100%;}
+body{font-size:12px;color:#222;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:Microsoft YaHei,Arial,Tahoma,Helvetica,Arial,sans-serif!important;background-color:#fff;}
+body,body.full-height-layout #page-wrapper,body.full-height-layout #wrapper,html{height:100%}
+h1,h2,h4,h6{font-weight:100}
+h1{font-size:30px}
+h2{font-size:24px}
+h3{font-size:18px}
+h4{font-size:16px}
+h5{font-size:14px}
+h6{font-size:12px}
+h3,h5{margin-top:5px;font-weight:600}
+ul{padding: 0;}
+em{font-style: normal;}
+a{color:#333;text-decoration:none;}
+a:active,a:focus,a:hover{outline:0;text-decoration:none;color:#72afd2}
+::-webkit-scrollbar-track{background-color:transparent}
+::-webkit-scrollbar{width:8px;height:8px;background-color:transparent}
+::-webkit-scrollbar-thumb{background-color:rgba(0, 0, 0, 0.3);border-radius:40px;}
+::-moz-placeholder { color: #c2c2c2!important;; }
+::-webkit-input-placeholder { color:#c2c2c2!important;; }
+:-ms-input-placeholder { color:#c2c2c2!important; }
+input[disabled='disabled']{background-color: #eee!important;color:#999;}
+input[disabled='disabled']+i{color: #999!important;}
+input::-ms-clear{display: none;}
+label{font-weight: normal;}
+label.error {display: inline-block;float: left;margin-bottom:4px;margin-left:0;color:#b94a48!important;font-weight:500;line-height: 12px;}
+label.error:before{color:#b94a48;content:"\e74e";font-family:hbvat-icon!important;font-size:13px;font-weight:600;font-style:normal;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+#content-main{height:calc(100% - 140px);overflow:hidden}
+.fixed-nav #content-main{height:calc(100% - 80px);overflow:hidden}
+.input-group label.error{margin-bottom:5px;}
+.form-control.error {border: 1px solid #b94a48!important;}
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand {display: none; }
+#page-wrapper{min-height:auto}
+:focus{outline: 0!important;}
+.ui-input-text select, .table-bordered select{height:30px;padding-right: 14px;color: #333; appearance:none;  -moz-appearance:none; -webkit-appearance:none; background: url(../assets/imgs/arrow-down.png) no-repeat scroll right center transparent;background-size:25px;box-shadow: none;}
+
+/* 字体图标
+--------------------------------------------------------------------------------*/
+.icon {/* 通过设置 font-size 来改变图标大小 */width: 1em; height: 1em;/* 图标和文字相邻时，垂直对齐 */vertical-align: -0.15em; /* 通过设置 color 来改变 SVG 的颜色/fill */fill: currentColor;/* path 和 stroke 溢出 viewBox 部分在 IE 下会显示normalize.css 中也包含这行 */}
+
+/* 全局通用小样式
+--------------------------------------------------------------------------------*/
+.p-text-center{text-align:center;}
+.p-text-left{text-align: left;}
+.p-text-right{text-align: right;}
+.p-text-center{text-align: center;}
+.hide{display:none!important}
+.no-border{border:0!important}
+.no-padding{padding:0!important}
+.no-margin{margin:0!important}
+.no-shadow{box-shadow:none!important}
+.circle{border-radius:50%;}
+
+/* 页面布局
+--------------------------------------------------------------------------------*/
+.col-tab-1{width:1%}
+.col-tab-2{width:2%}
+.col-tab-3{width:3%}
+.col-tab-4{width:4%}
+.col-tab-6{width:6%}
+.col-tab-7{width:7%}
+.col-tab-8{width:8%}
+.col-tab-9{width:9%}
+.col-tab-10{width:10%}
+.col-tab-12{width:12%}
+.col-tab-15{width:15%}
+.col-div-5{width:5%}
+.col-div-8{width:8%}
+.col-div-10{width:10%}
+.col-div-12{width:12%}
+.col-div-14{width:14%}
+.col-div-16{width:16%}
+.col-div-18{width:18%}
+.col-div-20{width:20%}
+.col-div-22{width:22%}
+.col-div-25{width:25%}
+.col-div-30{width:30%}
+.col-div-38{width:38%}
+.col-div-40{width:40%}
+/* 页面布局补丁
+--------------------------------------------------------------------------------*/
+.p-t-xxs{padding-top:1px}
+.p-t-xs{padding-top:7px}
+.p-t-sm{padding-top:10px!important;}
+.p-t{padding-top:15px!important}
+.p-l-md{padding-left:50px}
+.p-l-n-xxs{padding-left:-1px}
+.p-l-n-xs{padding-left:-5px}
+.p-l-n-sm{padding-left:-10px}
+.p-l-n{padding-left:-15px}
+.p-b-0{padding-bottom:0!important;}
+.m-l-none{margin-left:0}
+.m-l-xs{margin-left:5px}
+.m-l-sm{margin-left:10px}
+.m-l{margin-left:15px}
+.m-l-md{margin-left:20px}
+.m-l-n-xxs{margin-left:-1px}
+.m-l-n-xs{margin-left:-5px}
+.m-l-n-sm{margin-left:-10px}
+.m-l-n{margin-left:-15px}
+.m-l-n-md{margin-left:-20px}
+.m-l-n-lg{margin-left:-30px}
+.m-l-n-xl{margin-left:-40px}
+.m-r-xxs{margin-right:1px}
+.m-r-xs{margin-right:5px}
+.m-r-sm{margin-right:10px}
+.m-r{margin-right:15px}
+.m-r-md{margin-right:20px}
+.m-r-lg{margin-right:30px}
+.m-r-xl{margin-right:40px}
+.m-r-n-xxs{margin-right:-1px}
+.m-r-n-xs{margin-right:-5px}
+.m-r-n-sm{margin-right:-10px}
+.m-r-n{margin-right:-15px!important;}
+.m-r-n-md{margin-right:-20px}
+.m-r-n-lg{margin-right:-30px}
+.m-r-n-xl{margin-right:-40px}
+.m-t-xxs{margin-top:1px}
+.m-t-xs{margin-top:7px}
+.m-t-sm{margin-top:10px!important;}
+.m-t{margin-top:15px!important}
+.m-t-md{margin-top:20px!important}
+.m-t-lg{margin-top:30px!important}
+.m-t-xl{margin-top:40px!important}
+.m-b-sm{margin-bottom:10px;}
+.m-b-n{margin-bottom:-15px}
+.m-b-n-md{margin-bottom:-20px}
+.m-b-n-lg{margin-bottom:-30px}
+.m-b-n-xl{margin-bottom:-40px}
+.m-b-none{margin-bottom:0}
+.m-b-xxs{margin-bottom:1px}
+.m-b-xs{margin-bottom:5px}
+.m-b-sm{margin-bottom:10px}
+.m-b{margin-bottom:15px}
+.m-b-md{margin-bottom:20px}
+.m-b-lg{margin-bottom:30px}
+.m-b-xl{margin-bottom:40px}
+
+/* 页面色彩补丁
+--------------------------------------------------------------------------------*/
+.bg-navy{background-color:#001f3f!important}
+.bg-teal{background-color:#39cccc!important}
+.bg-olive{background-color:#3d9970!important}
+.bg-lime{background-color:#01ff70!important}
+.bg-blue{background-color:#63BBF2!important}
+.bg-light-blue,.label-primary,.modal-primary .modal-body{background-color:#3c8dbc!important}
+.bg-orange{background-color:#FFD400!important}
+.bg-fuchsia{background-color:#f012be!important}
+.bg-purple{background-color:#605ca8!important}
+.bg-maroon{background-color:#d81b60!important}
+.bg-gray-active{color:#000;background-color:#b5bbc8!important}
+.bg-black-active{background-color:#000!important}
+.bg-red-active,.modal-danger .modal-footer,.modal-danger .modal-header{background-color:#d33724!important}
+.bg-yellow-active,.modal-warning .modal-footer,.modal-warning .modal-header{background-color:#db8b0b!important}
+.bg-aqua-active,.modal-info .modal-footer,.modal-info .modal-header{background-color:#00a7d0!important}
+.bg-blue-active{background-color:#005384!important}
+.bg-light-blue-active,.modal-primary .modal-footer,.modal-primary .modal-header{background-color:#357ca5!important}
+.bg-green-active,.modal-success .modal-footer,.modal-success .modal-header{background-color:#008d4c!important}
+.bg-navy-active{background-color:#001a35!important}
+.bg-teal-active{background-color:#30bbbb!important}
+.bg-olive-active{background-color:#368763!important}
+.bg-lime-active{background-color:#00e765!important}
+.bg-orange-active{background-color:#ff7701!important}
+.bg-fuchsia-active{background-color:#db0ead!important}
+.bg-purple-active{background-color:#555299!important}
+.bg-maroon-active{background-color:#ca195a!important}
+[class^=bg-].disabled{opacity:.65;filter:alpha(opacity=65)}
+.text-red{color:#dd4b39!important}
+.text-yellow{color:#f39c12!important}
+.text-bluemoni{color:#00D9D2;}
+.text-yellowmoni{color:#FFD400;}
+.text-redmoni{color:#F56735!important;}
+.text-aqua{color:#00c0ef!important}
+.text-blue{color:#4BBAFF!important}
+.text-black{color:#111!important}
+.text-light-blue{color:#3c8dbc!important}
+.text-green{color:#00a65a!important}
+.text-gray{color:#d2d6de!important}
+.text-navy{color:#001f3f!important}
+.text-teal{color:#39cccc!important}
+.text-olive{color:#3d9970!important}
+.text-lime{color:#01ff70!important}
+.text-orange{color:#ff851b!important}
+.text-fuchsia{color:#f012be!important}
+.text-purple{color:#605ca8!important}
+.text-maroon{color:#d81b60!important}
+.font-blue{color: #56BFDE;}
+.font-black{color: #333;font-weight: 400;}
+.font-red{color: #FF3030!important;}
+.font-orange{color: #F8B63E;}
+.text-green{#00a65a !important}
+.link-muted{color:#7a869d}
+.link-muted:focus,.link-muted:hover{color:#606c84}
+.link-black{color:#666}
+.link-black:focus,.link-black:hover{color:#999}
+
+/* 提示框  */
+.popover{font-size:12px;color:#ffffff;background-color:#ee7474;border:1px solid #ee7474;border-radius:4px;}
+.popover.top>.arrow {border-top-color: #ee7474;}
+.popover.top>.arrow:after {border-top-color: #ee7474;}
+.popover.bottom>.arrow {border-bottom-color: #ee7474;}
+.popover.bottom>.arrow:after {border-bottom-color: #ee7474;}
+.popover.left>.arrow {border-left-color: #ee7474;}
+.popover.left>.arrow:after {border-left-color: #ee7474;}
+.popover.right>.arrow {border-right-color: #ee7474;}
+.popover.right>.arrow:after {border-right-color: #ee7474;}
+.popover-content {padding: 3px 10px;}
