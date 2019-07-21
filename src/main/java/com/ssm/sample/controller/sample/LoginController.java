@@ -17,10 +17,8 @@ public class LoginController extends BaseController{
 	@Autowired
 	private LoginFacade loginFacade;
 	
-	private PageData pageData;
-	
-	@RequestMapping(value = "index")
-	public ModelAndView index() {
+	@RequestMapping(value = "login")
+	public ModelAndView login() {
 		ModelAndView mv = this.getModelAndView();	
 		mv.setViewName("sample/login");
 		return mv;
@@ -32,26 +30,13 @@ public class LoginController extends BaseController{
 		PageData pd = this.getPageData();
 		String password = pd.getString("password");
 		
-		pageData = loginFacade.getUserByUsername(pd);	
-		if (pageData.getString("password").equals(password)) {
-			pageData.put("status", "200");
+		pd = loginFacade.getUserByUsername(pd);	
+		if (pd.getString("password").equals(password)) {
+			pd.put("status", "200");
 		}else {
-			pageData.put("status", "500");
+			pd.put("status", "500");
 		}
 		
-		//pageData = pd;
-		
-		return pageData;
-	}
-	
-	@RequestMapping(value = "login")
-	public ModelAndView login(Object object) {
-		ModelAndView mv = new ModelAndView();
-		
-		PageData pd = pageData;
-		mv.addObject("pd", pd);
-		mv.setViewName("brandAdd/brandAdd");
-		
-		return mv;
+		return pd;
 	}
 }
