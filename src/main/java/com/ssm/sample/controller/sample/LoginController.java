@@ -17,6 +17,9 @@ public class LoginController extends BaseController{
 	@Autowired
 	private LoginFacade loginFacade;
 	
+	private PageData pageData;
+	
+	//跳转到登录页面
 	@RequestMapping(value = "login")
 	public ModelAndView login() {
 		ModelAndView mv = this.getModelAndView();	
@@ -24,19 +27,28 @@ public class LoginController extends BaseController{
 		return mv;
 	}
 	
+	//返回信息
 	@RequestMapping(value = "getUserByUsername")
 	@ResponseBody
 	public PageData getUserByUsername() {
 		PageData pd = this.getPageData();
 		String password = pd.getString("password");
 		
-		pd = loginFacade.getUserByUsername(pd);	
-		if (pd.getString("password").equals(password)) {
-			pd.put("status", "200");
+		pageData=loginFacade.getUserByUsername(pd);	
+		if (pageData.getString("password").equals(password)) {
+			pageData.put("status", "200");
 		}else {
-			pd.put("status", "500");
+			pageData.put("status", "500");
 		}
-		
-		return pd;
+		return pageData;
+	}
+	
+	//跳转到主页面
+	@RequestMapping(value = "index")
+	public ModelAndView index() {
+		ModelAndView mv = this.getModelAndView();	
+		mv.addObject("pd",pageData);
+		mv.setViewName("sample/brandAdd");
+		return mv;
 	}
 }

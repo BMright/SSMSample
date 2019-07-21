@@ -69,7 +69,7 @@
                     	success: function (result) {
                     		debugger;
                      		if(result.status == 200){
-                     			window.location.href='<%=path%>/sample/helloWorld';
+                     			window.location.href='<%=path%>/login/index';
                      		}else{
                      			alert("密码错误");
                      		}
