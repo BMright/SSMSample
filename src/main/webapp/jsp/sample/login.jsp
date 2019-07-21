@@ -41,12 +41,7 @@
 				color:white;
 				background-color:#074BA0;
 			}
-			.input_login{
-				height:30px;
-				width:200px;
-				outline:none;
-				font-size:18px;
-			}
+			
 		</style>
 		<script type="text/javascript">
 			$(document).keydown(function(event){
@@ -69,7 +64,7 @@
                     	success: function (result) {
                     		debugger;
                      		if(result.status == 200){
-                     			window.location.href='<%=path%>/login/index';
+                     			window.location.href='<%=path%>/loginAjax/index';
                      		}else{
                      			alert("密码错误");
                      		}
