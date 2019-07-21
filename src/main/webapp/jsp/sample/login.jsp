@@ -67,9 +67,9 @@
                   	  	},
                   	  	dataType: "json",
                     	success: function (result) {
-                    		debugger;
+                    		/* debugger; */
                      		if(result.status == 200){
-                     			window.location.href='<%=path%>/sample/helloWorld';
+                     			window.location.href='<%=path%>/loginAjax/login';
                      		}else{
                      			alert("密码错误");
                      		}
@@ -88,7 +88,7 @@
 			<p style="color:red;font-weight:900">${msg }</p>
 			<form action="" method="post">
 					<p class="p_login">用户名：<input id="username" class="input_login" type="text" name="username" value="${pd.username }"/></p>
-					<br/>
+					<br/>${pd.username }
 					<p class="p_login">密&nbsp;&nbsp;&nbsp;码：<input id="password" class="input_login" type="password" name="password" value="${pd.password }"/></p>
 					<input class="submit_login" type="button" value="登录" style="cursor:pointer"/>
 			</form>			
