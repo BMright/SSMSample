@@ -11,39 +11,111 @@
 <head>
 <meta charset="utf-8">
 <title>添加品牌</title>
-<link rel="stylesheet" type="text/css"
-	href="<%=basePath%>css/brand/Add.css" />
-<script type="text/javascript" src="<%=basePath%>js/brand/brandAdd.js"></script>
-<%-- <script type="text/javascript">
-			$(document).keydown(function(event){
-				if(event.keyCode==13){
-					$(".submit_login").click();
-				}
-			});
-		
-			$(document).ready(function(){
-				$(".submit_login").click(function(){
-					debugger;
-					$.ajax({
-                 	   	type: "POST",
-                  	  	url: "<%=path%>/brand/brandadd",
-                  	  	data: $('#form1').serialize(),
-                  	  	dataType: "json",
-                    	success: function (result) {
-                    		debugger;
-                     		if(result.status == 200){
-                     			window.location.href='<%=path%>/loginAjax/index';
-                     		}else{
-                     			alert("密码错误");
-                     		}
-                    	},
-                    	error: function(data) {
-                    		alert("账户不存在");
-                     	}
-                	});
-				});
-			});
-		</script> --%>
+<link rel="stylesheet" type="text/css" href="<%=basePath%>css/brand/Add.css" />
+<script src="<%=basePath%>js/brand/brandAdd.js"></script>
+<script type="text/javascript">
+//按回车键提交
+$(document).keydown(function(event) {
+	if (event.keyCode == 13) {
+		$(".submit_login").click();
+	}
+});
+
+//点击提交键提交
+$(document).ready(function() {
+	$(".submit_login").click(function() {
+		alert("asfda");
+		$.ajax({
+     	   	type: "POST",
+      	  	url: '<%=path%>/brand/brandadd',
+      	  	data: $('#form1').serialize(),
+      	  	dataType: "json",
+        	success: function (result) {
+        		debugger;
+         		if(result.status == 200){
+         			alert("提交成功");
+         		}else{
+         			alert("提交失败");
+         		}
+        	},
+        	error: function(data) {
+        		alert("提交异常");
+         	}
+    	});
+	});
+});
+
+/*加载一级业态下拉选*/
+$(function () {
+	$.ajax({
+        type: "post",
+        url: "<%=path%>/brand/getFirstClass",
+        success: function (data) {
+            for (var i = 0; i < data.length; i++) {
+                $('#firstClass').append("<option value='" + data[i].firstClass_id + "' >" + data[i].firstClass_name + "</option>");
+            }
+        },
+        error: function () {
+            alert("加载省失败");
+        }
+    });
+});
+
+/*加载二级业态下拉选*/
+function getSecondClass() {
+	$('#div3').hide();
+	$('#div4').hide();
+	
+    var id = $("#firstClass").val();
+    $("#secondClass").empty();
+    /* $("#thirdClass").empty(); */
+    $.ajax({
+        type: "post",
+        url: "<%=path%>/brand/getSecondClass",
+        data: {"id": id},
+        success: function (data) {
+            $('#secondClass').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+            for (var i = 0; i < data.length; i++) {
+                $('#secondClass').append("<option value='" + data[i].secondClass_id + "' >" + data[i].secondClass_name + "</option>");
+            }
+        },
+        error: function () {
+            alert("加载市失败");
+        }
+    });
+};
+
+/*加载三级业态下拉选*/
+function getThirdClass() {
+	$('#div3').show();
+	$('#div4').show();
+	
+    var id = $("#secondClass").val();
+    /* $("#thirdClass").empty(); */
+    $.ajax({
+        type: "post",
+        url: "<%=path%>/brand/getThirdClass",
+        data: {"id": id},
+        success: function (data) {
+            /* $('#secondClass').append("<option value='' selected='selected' >" + '请选择' + "</option>"); */
+            for (var i = 0; i < data.length; i++) {
+                if(i % 3 == 0){
+                	$('#div5').append("<input type='checkbox' name='thirdClass_name' size='3'value='" + data[i].thirdClass_id + "'/>" + data[i].thirdClass_name + "<br>");
+                }
+                else if(i % 3 == 1){
+                	$('#div51').append("<input type='checkbox' name='thirdClass_name' size='3'value='" + data[i].thirdClass_id + "'/>" + data[i].thirdClass_name + "<br>");
+                }
+                else if(i % 3 == 2){
+                	$('#div52').append("<input type='checkbox' name='thirdClass_name' size='3'value='" + data[i].thirdClass_id + "'/>" + data[i].thirdClass_name + "<br>");
+                }
+            }
+        },
+        error: function () {
+            alert("加载市失败");
+        }
+    });
+};
+</script>
 </head>
 <body>
 	<div id="top">
@@ -134,7 +206,7 @@
 					<select style="width: 175px;" name="brand_grade">
 						<option>请选择品牌等级</option>
 					</select><label style="color: red;">*</label><br> <br> <br> 
-					<select style="width: 175px;" name="firstClass_format">
+					<select id="firstClass" onchange="getSecondClass()" style="width: 175px;" name="firstClass_format">
 						<option>请选择一级业态</option>
 					</select><label style="color: red;">*</label><br> <br> <br>
 				</div>
@@ -148,29 +220,29 @@
 					<br> <br> <select style="width: 175px;" name="brand_type">
 						<option>请选择品牌类型</option>
 					</select><br> <br> <br> 
-					<select style="width: 175px;" name="secondClass_format">
+					<select id="secondClass" onchange="getThirdClass()" style="width: 175px;" name="secondClass_format">
 						<option>请选择二级业态</option>
 					</select><br> <br> <br>
 				</div>
 
 				<div id="div1">
-					<div id="div3">三级业态:</div>
+					<div id="div3" style="display:none">三级业态:</div>
 					<div class="div3">品牌官网:</div>
 					<div class="div3">总部公司电话:</div>
 				</div>
 				<div id="div2">
-					<div id="div4">
+					<div id="div4" style="display:none">
 						<div id="div5">
-							<input type="checkbox" size="3" />美容、SPA<br> <input
-								type="checkbox" size="3" />瘦身美体
+							<!-- <input type="checkbox" size="3" />美容、SPA<br> <input
+								type="checkbox" size="3" />瘦身美体 -->
 						</div>
-						<div class="div4">
-							<input type="checkbox" size="3" />美发美甲<br> <input
-								type="checkbox" size="3" />洗护汗蒸
+						<div class="div4" id="div51">
+							<!-- <input type="checkbox" size="3" />美发美甲<br> <input
+								type="checkbox" size="3" />洗护汗蒸 -->
 						</div>
-						<div class="div4">
-							<input type="checkbox" size="3" />母婴护理<br> <input
-								type="checkbox" size="3" />足疗按摩
+						<div class="div4" id="div52">
+							<!-- <input type="checkbox" size="3" />母婴护理<br> <input
+								type="checkbox" size="3" />足疗按摩 -->
 						</div>
 					</div>
 					<div class="div5">
@@ -179,9 +251,14 @@
 					<div class="div5">
 						<input type="text" name="headquarters_telephone" placeholder="联系电话" style="width: 460px;">
 					</div>
-					<div id="div6">
-						+添加品牌LOGO<br> <br>支持.jpg/.png<br> <br>大小在4M以内
+					<div>
+						<img id="div6img" style="margin-left:120px;" width="160" height="110px" src="<%=basePath %>/assets/imgs/brandAdd/add.jpg"/>
+						<input type="file" />
+						<div id="div6" style="margin-top:-110px;">
+							+添加品牌LOGO<br> <br>支持.jpg/.png<br> <br>大小在4M以内
+						</div>
 					</div>
+					
 				</div>
 				<div id="div7">拓展联系人:</div>
 				<div class="div6">

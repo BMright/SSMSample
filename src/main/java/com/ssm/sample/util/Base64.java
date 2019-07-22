@@ -62,7 +62,7 @@ public final class Base64 {
 
 	/**
 	 * Encodes hex octects into Base64
-	 *
+	 *	-编码为base64格式
 	 * @param binaryData
 	 *            Array containing binaryData
 	 * @return Encoded Base64 array
@@ -154,7 +154,7 @@ public final class Base64 {
 
 	/**
 	 * Decodes Base64 data into octects
-	 *
+	 * -将base64格式转换为八进制
 	 * @param encoded
 	 *            string containing Base64 data
 	 * @return Array containind decoded data.
