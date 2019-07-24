@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.checkMapper">
+	<select id="selectCheckByPage" resultType="pd">
+		SELECT * FROM first_classformat WHERE firstClass_id = #{firstClassId,jdbcType=INTEGER} limit #{startPos},#{pageSize}
+	</select>
+	<!-- 取得记录的总数 -->
+	<select id="getCheckCount" resultType="long">  
+ 		SELECT COUNT(*) FROM first_classformat WHERE firstClass_id = #{userId,jdbcType=INTEGER}   
+	</select>
+	<!-- 获取一级业态 -->
+	<select id="getFirstClass" resultType="pd">
+		SELECT * FROM first_classformat
+	</select>
+	
+	<!-- 获取二级业态 -->
+	<select id="getSecondClass" parameterType="Integer" resultType="pd">
+		SELECT * FROM second_classformat where firstClass_id = #{id}
+	</select>
+	
+	<!-- 获取三级业态 -->
+	<select id="getThirdClass" parameterType="Integer" resultType="pd">
+		SELECT * FROM thrid_classformat where secondClass_id = #{id}
+	</select>
+</mapper>
