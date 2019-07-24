@@ -35,6 +35,7 @@ public class LoginController extends BaseController{
 		String password = pd.getString("password");
 		
 		pageData=loginFacade.getUserByUsername(pd);	
+		
 		if (pageData.getString("password").equals(password)) {
 			pageData.put("status", "200");
 		}else {

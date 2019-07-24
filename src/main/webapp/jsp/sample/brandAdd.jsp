@@ -10,9 +10,10 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Type" content="multipart/form-data;charset=utf-8" />
 <title>添加品牌</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/brand/Add.css" />
-<script src="<%=basePath%>js/brand/brandAdd.js"></script>
+<%-- <script src="<%=basePath%>js/brand/brandAdd.js"></script> --%>
 <script type="text/javascript">
 //按回车键提交
 $(document).keydown(function(event) {
@@ -21,18 +22,56 @@ $(document).keydown(function(event) {
 	}
 });
 
-//点击提交键提交
 $(document).ready(function() {
+	//点击+上传文件事件
+	$("#div6img").click(function(){
+	    $("#upFile").click();
+	  });
+	
+	//文件内容改变事件
+	$("#upFile").change(function(){
+		/* var formdata=new FormData($("#form2")); */
+		 var s = $('#upFile')[0].files[0];
+        var formData = new FormData();
+        formData.append("file", s);
+
+		debugger;
+		$.ajax({
+            url: "<%=path%>/brand/upload",
+            type: "post",
+            dataType: "json",
+            cache: false,
+            data: formData,
+            processData: false,// 不处理数据
+            contentType: false, // 不设置内容类型
+            success: function(data){
+               if(data.status == 200){
+            	   $("#div6img").attr('src',data.base64); 
+            	   alert("成功");
+               }else if (data.status == 500){
+            	   alert("重复上传")
+               }else if(data.status == 404){
+            	   alert("没有选择文件");
+               }
+            },
+            error:function(data){
+            	alert("文件上传异常");
+            }
+        })
+	});
+	
+	//点击提交键提交
 	$(".submit_login").click(function() {
+	    /* var data = new FormData($('#form1')[0]);
+	    alert(data);  */
 		alert("asfda");
 		$.ajax({
      	   	type: "POST",
       	  	url: '<%=path%>/brand/brandadd',
-      	  	data: $('#form1').serialize(),
+      	  	data: $('#form1').serialize(),  /* data */
       	  	dataType: "json",
-        	success: function (result) {
-        		debugger;
-         		if(result.status == 200){
+      	  	success: function (result) {
+        		if(result.status == 200){
          			alert("提交成功");
          		}else{
          			alert("提交失败");
@@ -56,13 +95,15 @@ $(function () {
             }
         },
         error: function () {
-            alert("加载省失败");
+            alert("加载一级业态失败");
         }
     });
 });
 
 /*加载二级业态下拉选*/
 function getSecondClass() {
+	$("#div3").empty();
+	$("#div4").empty();
 	$('#div3').hide();
 	$('#div4').hide();
 	
@@ -80,18 +121,19 @@ function getSecondClass() {
             }
         },
         error: function () {
-            alert("加载市失败");
+            alert("加载二级业态失败");
         }
     });
 };
 
 /*加载三级业态下拉选*/
 function getThirdClass() {
+	$("#div3").empty();
+	$("#div4").empty();
 	$('#div3').show();
 	$('#div4').show();
 	
     var id = $("#secondClass").val();
-    /* $("#thirdClass").empty(); */
     $.ajax({
         type: "post",
         url: "<%=path%>/brand/getThirdClass",
@@ -111,7 +153,7 @@ function getThirdClass() {
             }
         },
         error: function () {
-            alert("加载市失败");
+            alert("加载三级业态失败");
         }
     });
 };
@@ -167,7 +209,7 @@ function getThirdClass() {
 				style="color: #0B4CAD; font-size: 13px; text-align: center;">添加品牌</div>
 		</div>
 	</div>
-	<form id="form1">
+	<form id="form1" method="post">
 		<div id="content">
 			<div id="label">
 				<label style="color: #9AB7C9;">商家品牌库</label>>品牌添加
@@ -231,19 +273,10 @@ function getThirdClass() {
 					<div class="div3">总部公司电话:</div>
 				</div>
 				<div id="div2">
-					<div id="div4" style="display:none">
-						<div id="div5">
-							<!-- <input type="checkbox" size="3" />美容、SPA<br> <input
-								type="checkbox" size="3" />瘦身美体 -->
-						</div>
-						<div class="div4" id="div51">
-							<!-- <input type="checkbox" size="3" />美发美甲<br> <input
-								type="checkbox" size="3" />洗护汗蒸 -->
-						</div>
-						<div class="div4" id="div52">
-							<!-- <input type="checkbox" size="3" />母婴护理<br> <input
-								type="checkbox" size="3" />足疗按摩 -->
-						</div>
+					<div id="div4" style="display:none"><!-- 三级业态 -->
+						<div id="div5"></div>
+						<div class="div4" id="div51"></div>
+						<div class="div4" id="div52"></div>
 					</div>
 					<div class="div5">
 						<input type="text" name="official_website" placeholder="品牌官网" style="width: 460px;">
@@ -252,8 +285,9 @@ function getThirdClass() {
 						<input type="text" name="headquarters_telephone" placeholder="联系电话" style="width: 460px;">
 					</div>
 					<div>
-						<img id="div6img" style="margin-left:120px;" width="160" height="110px" src="<%=basePath %>/assets/imgs/brandAdd/add.jpg"/>
-						<input type="file" />
+						<img id="div6img" style="margin-left:120px;" width="160" height="110px" 
+						src="<%=basePath %>/assets/imgs/brandAdd/add.jpg"/>
+						<%-- <%=basePath %>/assets/imgs/brandAdd/add.jpg --%>
 						<div id="div6" style="margin-top:-110px;">
 							+添加品牌LOGO<br> <br>支持.jpg/.png<br> <br>大小在4M以内
 						</div>
@@ -305,8 +339,10 @@ function getThirdClass() {
 					<input class="submit_login" type="button" value="确认提交" style="cursor: pointer" />
 				</div>
 			</div>
-
 		</div>
+	</form>
+	<form id="form2" method="post" enctype="multipart/form-data">
+		<input id="upFile" name="brand_logo" type="file"/> <!-- style="display:none" -->
 	</form>
 </body>
 </html>

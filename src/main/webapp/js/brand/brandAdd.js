@@ -1,4 +1,10 @@
-/*加载省下拉选
+/*$(document).ready(function(){
+  $("#div6img").click(function(){
+    $("#upFile").click();
+  });
+});*/
+
+/*//加载一级业态下拉选
 $(function () {
 	$.ajax({
         type: "post",
@@ -12,21 +18,55 @@ $(function () {
             alert("加载省失败");
         }
     });
-});*/
+});
 
-/*function getCity() {
-    var id = $("#province_code").val();
-    $("#city_code").empty();
-    $("#area_code").empty();
+加载二级业态下拉选
+function getSecondClass() {
+	$('#div3').hide();
+	$('#div4').hide();
+	
+    var id = $("#firstClass").val();
+    $("#secondClass").empty();
+     $("#thirdClass").empty(); 
     $.ajax({
         type: "post",
-        url: "${ctx}/shop/area/getCity",
+        url: "<%=path%>/brand/getSecondClass",
         data: {"id": id},
         success: function (data) {
-            $('#city_code').append("<option value='' selected='selected' >" + '请选择' + "</option>");
-            $('#area_code').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+            $('#secondClass').append("<option value='' selected='selected' >" + '请选择' + "</option>");
             for (var i = 0; i < data.length; i++) {
-                $('#city_code').append("<option value='" + data[i].id + "' >" + data[i].aName + "</option>");
+                $('#secondClass').append("<option value='" + data[i].secondClass_id + "' >" + data[i].secondClass_name + "</option>");
+            }
+        },
+        error: function () {
+            alert("加载市失败");
+        }
+    });
+};
+
+加载三级业态下拉选
+function getThirdClass() {
+	$('#div3').show();
+	$('#div4').show();
+	
+    var id = $("#secondClass").val();
+     $("#thirdClass").empty(); 
+    $.ajax({
+        type: "post",
+        url: "<%=path%>/brand/getThirdClass",
+        data: {"id": id},
+        success: function (data) {
+             $('#secondClass').append("<option value='' selected='selected' >" + '请选择' + "</option>"); 
+            for (var i = 0; i < data.length; i++) {
+                if(i % 3 == 0){
+                	$('#div5').append("<input type='checkbox' name='thirdClass_name' size='3'value='" + data[i].thirdClass_id + "'/>" + data[i].thirdClass_name + "<br>");
+                }
+                else if(i % 3 == 1){
+                	$('#div51').append("<input type='checkbox' name='thirdClass_name' size='3'value='" + data[i].thirdClass_id + "'/>" + data[i].thirdClass_name + "<br>");
+                }
+                else if(i % 3 == 2){
+                	$('#div52').append("<input type='checkbox' name='thirdClass_name' size='3'value='" + data[i].thirdClass_id + "'/>" + data[i].thirdClass_name + "<br>");
+                }
             }
         },
         error: function () {

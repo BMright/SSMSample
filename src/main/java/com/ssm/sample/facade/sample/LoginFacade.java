@@ -7,7 +7,6 @@ import com.ssm.sample.controller.base.BaseController;
 import com.ssm.sample.service.sample.LoginService;
 import com.ssm.sample.util.PageData;
 
-
 @Service("loginFacade")
 public class LoginFacade extends BaseController{
 	@Autowired
