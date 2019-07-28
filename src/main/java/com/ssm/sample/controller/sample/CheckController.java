@@ -9,36 +9,43 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssm.sample.controller.base.BaseController;
+import com.ssm.sample.entity.Page;
 import com.ssm.sample.facade.sample.CheckFacade;
 import com.ssm.sample.util.PageData;
 @Controller
 @RequestMapping({ "/check", "/checkPopup", "/checkAjax" })
 public class CheckController extends BaseController{
 
+	@Autowired
+	private CheckFacade checkFacade;
+	
 	 @RequestMapping(value = "check") 
 	 public ModelAndView check() {
 		 ModelAndView mv = this.getModelAndView(); 
 		 mv.setViewName("sample/check"); return mv; 
-		 }
-	
-
-	@Autowired
-	private CheckFacade checkFacade;
-	
-	//获取数据库内容
-	@RequestMapping(value = "selectCheckByPage")
-	@ResponseBody
-	public List <PageData> selectCheckByPage(){
-		List<PageData> list = checkFacade.selectCheckByPage();
-		return list;
 	}
 	
-	//获取数据库内容总数
-	@RequestMapping(value = "getCheckCount")
-	@ResponseBody
-	public List <PageData> getCheckCount(){
-		List<PageData> list =checkFacade.getCheckCount();
-		return list;
+	//通过条件获取到全部的品牌列表
+	@RequestMapping(value = "getBrandListByQuery")
+	public ModelAndView getBrandListByQuery(Page page) {
+		ModelAndView mv = new ModelAndView();
+		PageData pd = this.getPageData();
+		System.out.println(page);
+		System.out.println(pd);
+		try {
+			page = checkFacade.setParameterOfPage(page, pd);	
+		} catch (Exception e) {
+			logger.error(e);
+			e.printStackTrace();
+		}
+		List<PageData> brandList = checkFacade.selectBrandList(page);
+		System.out.println(brandList);
+		
+		mv.addObject("brandList", brandList);
+		mv.addObject("pd", pd);
+		mv.addObject("page", page);
+		mv.setViewName("sample/check");
+		return mv;
 	}
 	
 	//获取一级业态

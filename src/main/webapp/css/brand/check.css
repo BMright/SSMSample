@@ -26,7 +26,7 @@
 .main{
 	position: absolute;
 	width: 1920px;
-	height: 1060px;
+	height:auto;/* height: 1060px; */
 	margin-left: -10px;
 	margin-top: 170px;
 	background-color: #F5F4F3;
@@ -365,7 +365,6 @@
 .b2{
 	text-align: center;
 	width: auto;
-	
 	font-size: 0.8em;
 	color: #034D98;
 	float: left;
@@ -387,7 +386,6 @@
 	text-align: center;
 	height: 25px;
 	font-size: 0.6em;
-	padding-right: -5px;
-	
+	/* padding-right: -5px; */
 	color: #034D98;
 }

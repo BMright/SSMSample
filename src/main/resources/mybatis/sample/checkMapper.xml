@@ -1,13 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sample.checkMapper">
-	<select id="selectCheckByPage" resultType="pd">
-		SELECT * FROM first_classformat WHERE firstClass_id = #{firstClassId,jdbcType=INTEGER} limit #{startPos},#{pageSize}
+
+		<!-- 通过查询条件取得品牌总数 -->
+	<select id="getCheckCount" parameterType="pd" resultType="Integer">  
+ 		select count(1) from brand 
+ 		<where>
+ 			<if test="true">
+ 				1=1
+ 			</if>
+ 			<if test="first_letter != '' and first_letter != null">
+				and first_letter = #{first_letter}
+			</if>
+ 			<if test="firstClass != '' and firstClass != null">
+ 				and firstClass_format = #{firstClass}
+ 			</if>
+ 			<if test="secondClass != '' and secondClass != null">
+				and secondClass_format = #{secondClass}
+			</if>
+			<if test="thirdClass != '' and thirdClass != null">
+				and thirdClass_format = #{thirdClass}
+			</if>
+			<if test="brand_grade != '' and brand_grade != null">
+				and brand_grade = #{brand_grade}
+			</if>
+			<if test="submit_time != '' and submit_time != null">
+				and submit_time = #{submit_time}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+			</if>
+			<if test="brand_type != '' and brand_type != null">
+				and brand_type = #{brand_type}
+			</if>
+			<if test="running_type != '' and running_type != null">
+				and running_type = #{running_type}
+			</if><if test="check_status != '' and check_status != null">
+				and check_status = #{check_status}
+			</if>
+			<if test="brand_name != '' and brand_name != null">
+				and ch_name like "%"#{brand_name}"%"
+			</if>
+			<if test="maintainer != '' and maintainer != null">
+				and maintainer like "%"#{maintainer}"%"
+			</if>
+ 		</where>
 	</select>
-	<!-- 取得记录的总数 -->
-	<select id="getCheckCount" resultType="long">  
- 		SELECT COUNT(*) FROM first_classformat WHERE firstClass_id = #{userId,jdbcType=INTEGER}   
+
+	<!-- 通过查询条件查询所有品牌信息 -->
+	<select id="selectBrandList" parameterType="page" resultType="pd">
+		select * from brand 
+		<where>
+ 			<if test="true">
+ 				1=1
+ 			</if>
+ 			<if test="pd.first_letter != '' and pd.first_letter != null">
+				and first_letter = #{pd.first_letter}
+			</if>
+ 			<if test="pd.firstClass != '' and pd.firstClass != null">
+ 				and firstClass_format = #{pd.firstClass}
+ 			</if>
+ 			<if test="pd.secondClass != '' and pd.secondClass != null">
+				and secondClass_format = #{pd.secondClass}
+			</if>
+			<if test="pd.thirdClass != '' and pd.thirdClass != null">
+				and thirdClass_format = #{pd.thirdClass}
+			</if>
+			<if test="pd.brand_grade != '' and pd.brand_grade != null">
+				and brand_grade = #{pd.brand_grade}
+			</if>
+			<if test="pd.submit_time != '' and pd.submit_time != null">
+				and submit_time = #{pd.submit_time}
+			</if>
+			<if test="pd.brand_type != '' and pd.brand_type != null">
+				and brand_type = #{pd.brand_type}
+			</if>
+			<if test="pd.running_type != '' and pd.running_type != null">
+				and running_type = #{pd.running_type}
+			</if>
+			<if test="pd.check_status != '' and pd.check_status != null">
+				and check_status = #{pd.check_status}
+			</if>
+			<if test="pd.brand_name != '' and pd.brand_name != null">
+				and ch_name like "%"#{pd.brand_name}"%"
+			</if>
+			<if test="pd.maintainer != '' and pd.maintainer != null">
+				and maintainer like "%"#{pd.maintainer}"%"
+			</if>
+ 		</where>
+		<if test="true">
+			limit #{currentResult},#{showCount}
+		</if>
 	</select>
+	
+
+	<!--  通过条件获得总条数
+	<select id="brandCountByQuery" parameterType="page" resultType="pd">
+		select count(1) from brand
+		<where>
+			<if test="true">
+				1=1
+			</if>
+			<if test="custName != null and custName != ''">
+				and cust_name like "%"#{custName}"%"
+			</if>
+			<if test="custSource != null and custSource != ''">
+				and cust_source = #{custSource}
+			</if>
+			<if test="custIndustry != null and custIndustry != ''">
+				and cust_industry = #{custIndustry}
+			</if>
+			<if test="custLevel != null and custLevel != ''">
+				and cust_level = #{custLevel}
+			</if>
+		</where>
+	</select> -->
+	
 	<!-- 获取一级业态 -->
 	<select id="getFirstClass" resultType="pd">
 		SELECT * FROM first_classformat

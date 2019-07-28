@@ -35,6 +35,7 @@ public class EmpController extends BaseController {
 			pd = this.getPageData();
 			page.setPd(pd);
 			List<PageData> empList = empFacade.selectEmpList(page);
+			
 			List<PageData> deptList = empFacade.getAllDeptList();
 			mv.addObject("empList", empList);
 			mv.addObject("deptList", deptList);

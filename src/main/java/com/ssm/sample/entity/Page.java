@@ -22,7 +22,6 @@ public class Page {
 			// TODO: handle exception
 			this.showCount = 10;
 		}
-
 	}
 
 	public int getTotalPage() {
@@ -116,31 +115,37 @@ public class Page {
 
 			// 换页函数
 			sb.append("function nextPage(page){\n");
+			sb.append("$('#currentPage').val(page);\n");
 			sb.append(" //top.jzts();\n");
 			sb.append("debugger;");
 			sb.append("	if(true && document.forms[0]){\n");
-			// sb.append(" var url =
-			// document.forms[0].getAttribute(\"action\");\n");
-			sb.append("     var url = $(\"form[dt='pageform']\").attr(\"action\");\n");
-			sb.append("		if(url.indexOf('?')>-1){url += \"&" + (entityOrField ? "currentPage" : "page.currentPage") + "=\";}\n");
-			sb.append("		else{url += \"?" + (entityOrField ? "currentPage" : "page.currentPage") + "=\";}\n");
-			sb.append("		url = url + page + \"&" + (entityOrField ? "showCount" : "page.showCount") + "=" + showCount + "\";\n");
-			// sb.append(" document.forms[0].action = url;\n");
-			sb.append("     $(\"form[dt='pageform']\").attr(\"action\",url);\n");
-			// sb.append(" document.forms[0].submit();\n");
-			sb.append("     $(\"form[dt='pageform']\").submit();\n");
-			sb.append("	}else{\n");
+			sb.append(" var url = document.forms[0].getAttribute(\"action\");\n");
+			//sb.append("     var url = $(\"form[dt='pageform']\").attr(\"action\");\n");//form[dt='pageform']
+			/*
+			 * sb.append("		if(url.indexOf('?')>-1)\n{url += \"&" + (entityOrField ?
+			 * "currentPage" : "page.currentPage") + "=\";}\n");
+			 * sb.append("		else{url += \"?" + (entityOrField ? "currentPage" :
+			 * "page.currentPage") + "=\";}\n"); sb.append("		url = url + page + \"&"
+			 * + (entityOrField ? "showCount" : "page.showCount") + "=" + showCount +
+			 * "\";\n"); sb.append(" document.forms[0].action = url;\n");
+			 */
+			// sb.append("     $(\"form[dt='pageform']\").attr(\"action\",url);\n");
+			sb.append(" document.forms[0].submit();\n");
+			// sb.append("     $(\"form[dt='pageform']\").submit();\n");
+			/*sb.append("	}else{\n");
 			sb.append("		var url = document.location+'';\n");
 			sb.append("		if(url.indexOf('?')>-1){\n");
-			sb.append("			if(url.indexOf('currentPage')>-1){\n");
-			sb.append("				var reg = /currentPage=\\d*/g;\n");
-			sb.append("				url = url.replace(reg,'currentPage=');\n");
-			sb.append("			}else{\n");
-			sb.append("				url += \"&" + (entityOrField ? "currentPage" : "page.currentPage") + "=\";\n");
-			sb.append("			}\n");
-			sb.append("		}else{url += \"?" + (entityOrField ? "currentPage" : "page.currentPage") + "=\";}\n");
-			sb.append("		url = url + page + \"&" + (entityOrField ? "showCount" : "page.showCount") + "=" + showCount + "\";\n");
-			sb.append("		document.location = url;\n");
+			sb.append("			if(url.indexOf('currentPage')>-1){\n");*/
+			//sb.append("				var reg = /currentPage=\\d*/g;\n");
+			/*
+			 * sb.append("				url = url.replace(reg,'currentPage=');\n");
+			 * sb.append("			}else{\n"); sb.append("				url += \"&" +
+			 * (entityOrField ? "currentPage" : "page.currentPage") + "=\";\n");
+			 * sb.append("			}\n"); sb.append("		}else{url += \"?" +
+			 * (entityOrField ? "currentPage" : "page.currentPage") + "=\";}\n");
+			 * sb.append("		url = url + page + \"&" + (entityOrField ? "showCount" :
+			 * "page.showCount") + "=" + showCount + "\";\n");
+			 * sb.append("		document.location = url;\n"); */
 			sb.append("	}\n");
 			sb.append("}\n");
 
@@ -148,16 +153,15 @@ public class Page {
 			sb.append("function changeCount(value){\n");
 			sb.append(" //top.jzts();\n");
 			sb.append("	if(true && document.forms[0]){\n");
-			// sb.append(" var url =
-			// document.forms[0].getAttribute(\"action\");\n");
-			sb.append("     var url = $(\"form[dt='pageform']\").attr(\"action\");\n");
+			sb.append(" var url = document.forms[0].getAttribute(\"action\");\n");
+			// sb.append("     var url = $(\"form[dt='pageform']\").attr(\"action\");\n");
 			sb.append("		if(url.indexOf('?')>-1){url += \"&" + (entityOrField ? "currentPage" : "page.currentPage") + "=\";}\n");
 			sb.append("		else{url += \"?" + (entityOrField ? "currentPage" : "page.currentPage") + "=\";}\n");
 			sb.append("		url = url + \"1&" + (entityOrField ? "showCount" : "page.showCount") + "=\"+value;\n");
-			// sb.append(" document.forms[0].action = url;\n");
-			sb.append("     $(\"form[dt='pageform']\").attr(\"action\",url);\n");
-			// sb.append(" document.forms[0].submit();\n");
-			sb.append("     $(\"form[dt='pageform']\").submit();\n");
+			sb.append(" document.forms[0].action = url;\n");
+			// sb.append("     $(\"form[dt='pageform']\").attr(\"action\",url);\n");
+			sb.append(" document.forms[0].submit();\n");
+			// sb.append("     $(\"form[dt='pageform']\").submit();\n");
 			sb.append("	}else{\n");
 			sb.append("		var url = document.location+'';\n");
 			sb.append("		if(url.indexOf('?')>-1){\n");
@@ -254,6 +258,13 @@ public class Page {
 
 	public void setPd(PageData pd) {
 		this.pd = pd;
+	}
+
+	@Override
+	public String toString() {
+		return "Page [defaultShowCount=" + defaultShowCount + ", showCount=" + showCount + ", totalPage=" + totalPage
+				+ ", totalResult=" + totalResult + ", currentPage=" + currentPage + ", currentResult=" + currentResult
+				+ ", entityOrField=" + entityOrField + "]";
 	}
 
 }
