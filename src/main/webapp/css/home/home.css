@@ -1,0 +1,237 @@
+#top {
+	width: 100%;
+	height: 33px;
+	background: #D9B355;
+}
+
+#toptop {
+	width: 1100px;
+	height: 33px;
+	margin-left: 395px;
+}
+
+#top1 {
+	height: 30px;
+	width: 175px;
+	line-height: 33px;
+	float: left;
+	color: white;
+}
+
+#top2 {
+	height: 30px;
+	width: 50px;
+	line-height: 30px;
+	color: white;
+	float: left;
+	background: #D9B355;
+}
+
+#top3 {
+	height: 33px;
+	width: 16px;
+	float: left;
+}
+
+#top4 {
+	height: 30px;
+	width: 60px;
+	float: left;
+	padding-top: 3px;
+	background: #D9B355;
+}
+
+#top5 {
+	height: 33px;
+	width: 250px;
+	float: left;
+	margin-left: 130px;
+	background: #D9B355;
+}
+
+.top6 {
+	height: 26px;
+	width: 70px;
+	float: left;
+	padding-top: 7px;
+	text-align: center;
+	background: #D9B355;
+	font-size: 13px;
+	color: white;
+}
+
+#text {
+	width: auto;
+	height: 116px;
+}
+
+#texttext {
+	width: 1100px;
+	height: 116px;
+	margin-left: 395px;
+}
+
+#text1 {
+	width: 430px;
+	height: 116px;
+	float: left;
+}
+
+#text2 {
+	width: 420px;
+	height: 42px;
+	float: left;
+	margin-top: 28px;
+	background: #034D98;
+}
+
+#text3 {
+	width: 26px;
+	height: 36px;
+	float: left;
+	outline: none;
+	margin-top: 3px;
+	margin-left: 2px;
+	padding-top: 4px;
+	padding-left: 3px;
+	background: #FFFFFF;
+}
+
+.txt3 {
+	outline: none;
+}
+
+#text4 {
+	width: 390px;
+	height: 42px;
+	margin-top: 2px;
+	float: left;
+}
+
+#text5 {
+	width: 60px;
+	height: 76px;
+	float: left;
+	padding-top: 40px;
+	margin-left: 20px;
+}
+
+#text6 {
+	width: 140px;
+	height: 32px;
+	line-height: 32px;
+	float: left;
+	border: solid 1px black;
+	border-radius: 5px;
+	float: left;
+	border: solid 1px black;
+	border-radius: 5px;
+	margin-top: 32px;
+}
+#banner{
+	width:100%;
+	height:140px;
+}
+#bannerlogo{
+	float:left;
+	width:6%;
+	height:100px;
+	margin-top:20px;
+	margin-left:450px;
+}
+#brandnum{
+	width:16%;
+	height:100px;
+	color:#EBC453;
+	font-size:45px;	
+	float:left;
+	margin-top:20px;
+	text-align: center;
+	line-height:100px;
+}
+#detailbrand{
+	float:left;
+	width:35%;
+	height:100px;
+	margin-top:20px;
+	color:white;
+	font-size:25px;
+}
+#yetaiInformation{
+	width:100%;
+	height:50px;
+	/* border:1px solid white; */
+	line-height:50px;
+}
+#brandInformation{
+	width:100%;
+	height:50px;
+	/* border:1px solid white; */
+	line-height:50px;
+}
+#content{
+	width:100%;
+	/* height:1000px; */
+	background:#F5F4F3;
+}
+#main{
+	width:60%;
+	height:800px;
+	margin-left:20%;
+	padding-top:20px;
+}
+#first_letter{
+	width:100%;
+	height:40px;
+	border:1px solid #E5E3E1;
+	background:white;
+	text-indent:2em;
+	font-size:15px;
+	line-height:40px;
+	word-spacing:10px;
+	
+}
+#brandcontent{
+	width:100%;
+	height:700px;
+	border:1px solid #E5E3E1;
+	margin-top:20px;
+	background:white;
+}
+.end{
+	width:100%;
+	text-align: center;
+	height: 45px;
+	font-size: 0.6em;	
+	color: #034D98;
+	background:white;
+	line-height:15px;
+}
+ #maintable{
+	width:100%;
+	height:700px;
+	border:1px solid #E7E6E4;
+}
+
+#firsttable{
+	width:70%;
+	margin-left:10%;
+	height:60px;
+	border-right:1px solid #E7E6E4;
+}
+#firsttable th{
+	color:#164B80;
+}
+#secodetable{
+	width:85%;
+	
+}
+#secodetable th{
+	width:30%;
+}
+ #secodetable td{
+	width:24%;
+}
+#secodetable tr{
+	height:10px;
+} 

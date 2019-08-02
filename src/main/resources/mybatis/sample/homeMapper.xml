@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.homeMapper">
+	
+	<!-- 获取一级业态总数量 -->
+	<select id="getFirstCheckCount" resultType="Integer">  
+ 		SELECT COUNT(*) FROM first_classformat 
+	</select>
+	
+	<!-- 获取二级业态总数量 -->
+	<select id="getSecondCheckCount" resultType="Integer">  
+ 		SELECT COUNT(*) FROM second_classformat 
+	</select>
+	
+	<!-- 获取三级业态总数量 -->
+	<select id="getThirdCheckCount" resultType="Integer">  
+ 		SELECT COUNT(*) FROM thrid_classformat 
+	</select>
+	
+	<!-- 取得首页大标题的总数 -->
+	<select id="getClassCheckCount" parameterType="pd" resultType="Integer">  
+ 		SELECT COUNT(*) FROM brand 
+ 		<where>
+ 			<if test="brand_grade != '' and brand_grade != null">
+ 				brand_grade = #{brand_grade}
+ 			</if>
+ 		</where>
+	</select>
+	
+	<!-- 取得记录的总数 -->
+	<select id="getCheckCount" parameterType="pd" resultType="Integer">  
+ 		SELECT COUNT(*) FROM brand 
+ 		<where>
+ 			<if test="true">
+ 				1=1
+ 			</if>
+ 			<if test="firstClass_format != '' and firstClass_format != null">
+ 				and firstClass_format=#{firstClass_format}
+ 			</if>
+ 			<if test="secondClass_format != '' and secondClass_format != null">
+ 				and secondClass_format = #{secondClass_format}
+ 			</if>
+ 			<if test="thirdClass_format != '' and thirdClass_format != null">
+ 				and thirdClass_format = #{thirdClass_format}
+ 			</if>
+ 			<if test="brand_grade != '' and brand_grade != null">
+ 				and brand_grade = #{brand_grade}
+ 			</if>
+ 		</where>
+	</select>
+	
+	
+</mapper>
