@@ -13,6 +13,7 @@
 <meta http-equiv="Content-Type" content="multipart/form-data;charset=utf-8" />
 <title>添加品牌</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/brand/Add.css" />
+<link rel="stylesheet" type="text/css" href="<%=basePath%>assets/icon/table_icon.css" />
 <%-- <script src="<%=basePath%>js/brand/brandAdd.js"></script> --%>
 <script type="text/javascript">
 //按回车键提交
@@ -35,6 +36,25 @@ $(document).ready(function() {
         var formData = new FormData();
         formData.append("file", s);
 
+        var val= $("#upFile").val();
+        var k = val.substr(val.indexOf("."));
+        alert(k);
+        /* alert(k != ".jpg" && k != ".png"); */
+        if(k != ".jpg" && k != ".png"){
+        	alert("图片格式错误");
+        	$('#upFile').value="";
+        	return false;
+        }
+        var fileSize = 0;
+        fileSize = s.size;
+        var size = fileSize / 1024;
+        if(size>4000){
+        	alert("大小不能大于4M");
+        	$('#upFile').value="";
+        	return false;   //阻止submit提交
+        }
+        alert("格式正确");
+        
 		debugger;
 		$.ajax({
             url: "<%=path%>/brand/upload",
@@ -47,6 +67,9 @@ $(document).ready(function() {
             success: function(data){
                if(data.status == 200){
             	   $("#div6img").attr('src',data.base64); 
+            	   $("#brand_logo").val(data.base64);
+            	   alert($("#brand_logo").val());
+            	   $('#upFile').val("");
             	   alert("成功");
                }else if (data.status == 500){
             	   alert("重复上传")
@@ -62,25 +85,40 @@ $(document).ready(function() {
 	
 	//点击提交键提交
 	$(".submit_login").click(function() {
-	    /* var data = new FormData($('#form1')[0]);
-	    alert(data);  */
-		alert("asfda");
-		$.ajax({
-     	   	type: "POST",
-      	  	url: '<%=path%>/brand/brandadd',
-      	  	data: $('#form1').serialize(),  /* data */
-      	  	dataType: "json",
-      	  	success: function (result) {
-        		if(result.status == 200){
-         			alert("提交成功");
-         		}else{
-         			alert("提交失败");
-         		}
-        	},
-        	error: function(data) {
-        		alert("提交异常");
-         	}
-    	});
+	    if($('#ch_name').val() == "" || $('#ch_name').val() == null){
+	    	alert("请输入品牌中文名");
+	    	return false;
+	    }
+	    else if($('#brand_grade').val() == "" || $('#brand_grade').val() == null){
+	    	alert("请选择品牌等级");
+	    	return false;
+	    }
+	    else if($('#firstClass').val() == "" || $('#firstClass').val() == null){
+	    	alert("请选择一级业态");
+	    	return false;
+	    }
+	    else if($('#contact_name').val() == "" || $('#contact_name').val() == null){
+	    	alert("请输入拓展联系人姓名");
+	    	return false;
+	    }
+	    else{
+	    	$.ajax({
+	     	   	type: "POST",
+	      	  	url: '<%=path%>/brand/brandadd',
+	      	  	data: $('#form1').serialize(),  /* data */
+	      	  	dataType: "json",
+	      	  	success: function (result) {
+	        		if(result.status == 200){
+	         			alert("提交成功");
+	         		}else{
+	         			alert("提交失败");
+	         		}
+	        	},
+	        	error: function(data) {
+	        		alert("提交异常");
+	         	}
+	    	});	
+	    }
 	});
 });
 
@@ -102,8 +140,9 @@ $(function () {
 
 /*加载二级业态下拉选*/
 function getSecondClass() {
-	$("#div3").empty();
-	$("#div4").empty();
+	$("#div5").empty();
+	$("#div51").empty();
+	$("#div52").empty();
 	$('#div3').hide();
 	$('#div4').hide();
 	
@@ -129,7 +168,9 @@ function getSecondClass() {
 /*加载三级业态下拉选*/
 function getThirdClass() {
 	$("#div3").empty();
-	$("#div4").empty();
+	$("#div5").empty();
+	$("#div51").empty();
+	$("#div52").empty();
 	$('#div3').show();
 	$('#div4').show();
 	
@@ -203,7 +244,7 @@ function getThirdClass() {
 				</div>
 			</div>
 			<div id="text5">
-				<a style="font-size: 13px;">我的品牌</a>
+				<a style="font-size: 13px;">我的品牌<i class='iconfont table_iconicon-21'></i></a>
 			</div>
 			<div id="text6"
 				style="color: #0B4CAD; font-size: 13px; text-align: center;">添加品牌</div>
@@ -221,20 +262,42 @@ function getThirdClass() {
 				</div>
 
 				<div Class="div2">
-					<input type="text" name="ch_name" placeholder="品牌中文名" style="width: 175px;" /><label
+					<input id="ch_name" type="text" name="ch_name" placeholder="品牌中文名" style="width: 175px;" /><label
 						style="color: red;">*</label><br> <br> <br> 
 					<select style="width: 175px;"  name="first_letter">
-						<option>A</option>
-						<option>B</option>
-						<option>C</option>
-						<option>D</option>
-						<option>E</option>
-						<option>F</option>
-						<option>G</option>
+						<option value="A">A</option>
+						<option value="B">B</option>
+						<option value="C">C</option>
+						<option value="D">D</option>
+						<option value="E">E</option>
+						<option value="F">F</option>
+						<option value="G">G</option>
+						<option value="H">H</option>
+						<option value="I">I</option>
+						<option value="J">J</option>
+						<option value="K">K</option>
+						<option value="L">L</option>
+						<option value="M">M</option>
+						<option value="N">N</option>
+						<option value="O">O</option>
+						<option value="P">P</option>
+						<option value="Q">Q</option>
+						<option value="R">R</option>
+						<option value="S">S</option>
+						<option value="T">T</option>
+						<option value="U">U</option>
+						<option value="V">V</option>
+						<option value="W">W</option>
+						<option value="X">X</option>
+						<option value="Y">Y</option>
+						<option value="Z">Z</option>
 					</select>
 					<br> <br> <br> 
 					<select style="width: 175px;" name="running_type">
-						<option>请选择运营方式</option>
+						<option value="0">请选择运营方式</option>
+						<option value="1">直营</option>
+						<option value="2">代理</option>
+						<option value="3">加盟</option>
 					</select><br> <br> <br>
 				</div>
 				<div Class="div1">
@@ -245,11 +308,14 @@ function getThirdClass() {
 				<div Class="div2">
 					<input type="text" name="en_name" placeholder="品牌英文名" style="width: 175px;" /><br>
 					<br> <br> 
-					<select style="width: 175px;" name="brand_grade">
-						<option>请选择品牌等级</option>
+					<select id="brand_grade" style="width: 175px;" name="brand_grade">
+						<option value="0">请选择品牌等级</option>
+						<option value="1">一线</option>
+						<option value="2">二线</option>
+						<option value="3">三线</option>
 					</select><label style="color: red;">*</label><br> <br> <br> 
 					<select id="firstClass" onchange="getSecondClass()" style="width: 175px;" name="firstClass_format">
-						<option>请选择一级业态</option>
+						<option value="null">请选择一级业态</option>
 					</select><label style="color: red;">*</label><br> <br> <br>
 				</div>
 				<div Class="div1">
@@ -260,7 +326,9 @@ function getThirdClass() {
 				<div Class="div2">
 					<input type="text" name="brand_alias" placeholder="品牌别名" style="width: 175px;" /><br>
 					<br> <br> <select style="width: 175px;" name="brand_type">
-						<option>请选择品牌类型</option>
+						<option value="0">请选择品牌类型</option>
+						<option value="1">本地</option>
+						<option value="2">连锁</option>
 					</select><br> <br> <br> 
 					<select id="secondClass" onchange="getThirdClass()" style="width: 175px;" name="secondClass_format">
 						<option>请选择二级业态</option>
@@ -287,7 +355,7 @@ function getThirdClass() {
 					<div>
 						<img id="div6img" style="margin-left:120px;" width="160" height="110px" 
 						src="<%=basePath %>/assets/imgs/brandAdd/add.jpg"/>
-						<%-- <%=basePath %>/assets/imgs/brandAdd/add.jpg --%>
+						<input id="brand_logo" type="text" name="brand_logo" value="" style="display:none"/>
 						<div id="div6" style="margin-top:-110px;">
 							+添加品牌LOGO<br> <br>支持.jpg/.png<br> <br>大小在4M以内
 						</div>
@@ -298,7 +366,7 @@ function getThirdClass() {
 				<div class="div6">
 					<div class="div7">姓名:</div>
 					<div class="div8">
-						<input type="text"  name="contact_name">&ensp;<label style="color: red;">*</label>
+						<input type="text" id="contact_name"  name="contact_name">&ensp;<label style="color: red;">*</label>
 					</div>
 					<div class="div7">英文名:</div>
 					<div class="div8">
@@ -342,7 +410,7 @@ function getThirdClass() {
 		</div>
 	</form>
 	<form id="form2" method="post" enctype="multipart/form-data">
-		<input id="upFile" name="brand_logo" type="file"/> <!-- style="display:none" -->
+		<input id="upFile" name="brand_logo" accept=".jpg,.png" type="file"/> <!-- style="display:none" -->
 	</form>
 </body>
 </html>

@@ -90,29 +90,6 @@
 		</if>
 	</select>
 	
-
-	<!--  通过条件获得总条数
-	<select id="brandCountByQuery" parameterType="page" resultType="pd">
-		select count(1) from brand
-		<where>
-			<if test="true">
-				1=1
-			</if>
-			<if test="custName != null and custName != ''">
-				and cust_name like "%"#{custName}"%"
-			</if>
-			<if test="custSource != null and custSource != ''">
-				and cust_source = #{custSource}
-			</if>
-			<if test="custIndustry != null and custIndustry != ''">
-				and cust_industry = #{custIndustry}
-			</if>
-			<if test="custLevel != null and custLevel != ''">
-				and cust_level = #{custLevel}
-			</if>
-		</where>
-	</select> -->
-	
 	<!-- 获取一级业态 -->
 	<select id="getFirstClass" resultType="pd">
 		SELECT * FROM first_classformat

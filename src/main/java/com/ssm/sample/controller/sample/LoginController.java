@@ -22,7 +22,18 @@ public class LoginController extends BaseController{
 	//跳转到登录页面
 	@RequestMapping(value = "login")
 	public ModelAndView login() {
-		ModelAndView mv = this.getModelAndView();	
+		ModelAndView mv = this.getModelAndView();
+		
+		//获取session域
+		this.setReqAndRes(request, response);
+		//获取username值
+		PageData username = (PageData) session.getAttribute("username");
+		//判断是否已经登录
+		if (username != null) {
+			mv.addObject("pd",pageData);
+			mv.setViewName("sample/brandAdd");
+			return mv;
+		}
 		mv.setViewName("sample/login");
 		return mv;
 	}
@@ -47,7 +58,11 @@ public class LoginController extends BaseController{
 	//跳转到主页面
 	@RequestMapping(value = "index")
 	public ModelAndView index() {
-		ModelAndView mv = this.getModelAndView();	
+		ModelAndView mv = this.getModelAndView();
+		//设置session域信息
+		session.setAttribute("username", pageData);
+		//设置session有效时间为30分钟
+		session.setMaxInactiveInterval(30*60);
 		mv.addObject("pd",pageData);
 		mv.setViewName("sample/brandAdd");
 		return mv;

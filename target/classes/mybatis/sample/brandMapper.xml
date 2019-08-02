@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sample.brandMapper">
+	
+	<!-- 添加扩展联系人 -->
+	<insert id="insertOnePeople" parameterType="pd">
+    	<selectKey resultType="java.lang.Integer" keyProperty="expandingContact_id">  
+     		SELECT LAST_INSERT_ID()  
+    	</selectKey>
+    	
+    	insert into expanding_contact(
+    		contact_name,
+    		contact_enName,
+    		contact_sex,
+    		contact_agencyArea,
+    		contact_position,
+    		contact_telephone,
+    		contact_otherPhone,
+    		contact_email
+    	)
+    	values
+    	(
+    		#{contact_name},
+    		#{contact_enName},
+    		#{contact_sex},
+    		#{contact_agencyArea},
+    		#{contact_position},
+    		#{contact_telephone},
+    		#{contact_otherPhone},
+    		#{contact_email}
+    	);
+    	
+	</insert>
+	
+	<!-- 添加品牌 -->
+	<insert id="insertOneBrand" parameterType="pd">
+		insert into brand(
+			ch_name,
+			en_name,
+			brand_alias,
+			first_letter,
+			brand_grade,
+			brand_type,
+			running_type,
+			firstClass_format,
+			secondClass_format,
+			official_website,
+			thirdClass_format,
+			headquarters_telephone,
+			brand_logo,
+			expanding_contacts
+		)
+		VALUES
+		(
+			#{ch_name},
+			#{en_name},
+			#{brand_alias},
+			#{first_letter},
+			#{brand_grade},
+			#{brand_type},
+			#{running_type},
+			#{firstClass_format},
+			#{secondClass_format},
+			#{official_website},
+			#{thirdClass_format},
+			#{headquarters_telephone},
+			#{brand_logo},
+			#{contact_name}
+		);
+	</insert>
+	
 	<!-- 获取一级业态 -->
 	<select id="getFirstClass" resultType="pd">
 		SELECT * FROM first_classformat

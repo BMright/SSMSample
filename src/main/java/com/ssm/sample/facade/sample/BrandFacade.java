@@ -15,6 +15,14 @@ public class BrandFacade extends BaseFacade{
 	@Autowired
 	private BrandService brandService;
 	
+	//添加品牌
+	public void insertOneBrand(PageData pd) {
+		Integer id = brandService.getIdByContacter(pd);
+		/* System.out.println("id"); */
+		pd.put("contact_name", id);
+		brandService.insertOneBrand(pd);
+	}
+	
 	//获取一级业态
 	public List<PageData> getFirstClass(){
 		List<PageData> list = brandService.getFirstClass();

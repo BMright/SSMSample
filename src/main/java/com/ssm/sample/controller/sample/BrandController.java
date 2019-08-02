@@ -28,6 +28,20 @@ public class BrandController extends BaseController {
 	@Autowired
 	private BrandFacade brandFacade;
 
+	// 添加品牌
+	@RequestMapping(value = "brandadd")
+	@ResponseBody
+	public PageData brandadd() {
+		PageData pd = this.getPageData();
+		System.out.println(pd);
+		
+		brandFacade.insertOneBrand(pd);
+		/* System.out.println("添加品牌"); */
+		
+		pd.put("status", "200");
+		return pd;
+	}
+	
 	// 获取一级业态
 	@RequestMapping(value = "getFirstClass")
 	@ResponseBody
@@ -70,6 +84,8 @@ public class BrandController extends BaseController {
 
 			// 上传文件的名字
 			String originalFilename = file.getOriginalFilename();
+			String[] array = originalFilename.split(",");
+			String last = array[array.length-1];
 			System.out.println(originalFilename);
 
 			//得到文件的内容
@@ -77,11 +93,12 @@ public class BrandController extends BaseController {
 				InputStream in = file.getInputStream();
 				byte[] bytes = file.getBytes();
 				String base64 = Base64.encode(bytes);
-				System.out.println("base64:"+base64);
-				pd.put("base64", "data:image/png;base64,"+base64);
+				/* System.out.println("base64:"+base64); */
+				pd.put("base64", "data:image/" + last + ";base64,"+base64);
 				
-				System.out.println(in);
-				System.out.println(bytes);
+				/*
+				 * System.out.println(in); System.out.println(bytes);
+				 */
 			} catch (IOException e1) {
 				/* e1.printStackTrace(); */
 			}   
@@ -118,15 +135,4 @@ public class BrandController extends BaseController {
 		return pd;
 	}
 
-	// 添加品牌
-	@RequestMapping(value = "brandadd")
-	@ResponseBody
-	public PageData brandadd() {
-		PageData pd = this.getPageData();
-
-		System.out.println("执行");
-		System.out.println(pd);
-		pd.put("status", "200");
-		return pd;
-	}
 }

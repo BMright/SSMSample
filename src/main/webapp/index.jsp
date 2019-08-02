@@ -1,5 +1,5 @@
 <html>
 <body>
-<jsp:forward page="/check/check" />
+<jsp:forward page="/login/login" />
 </body>
 </html>
