@@ -30,7 +30,7 @@ public class HomeController extends BaseController{
 		
 		mv.addObject("pd",pd);
 		mv.addObject("pd1",pd1);
-		mv.addObject("pd2",pd2);
+		mv.addObject("pd2",pd2); 
 
 		mv.setViewName("sample/home");		
 		return mv;
