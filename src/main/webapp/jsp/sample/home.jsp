@@ -55,9 +55,9 @@
 				</div>
 			</div>
 			<div id="text5">
-				<a href="#" style="font-size: 13px;">我的品牌</a>
+				<a href="<%=path%>/brand/myBrand" style="font-size: 13px;">我的品牌</a>
 			</div>
-			<a href="<%=path%>/brand/add">
+			<a href="<%=path%>/brand/brandAdd">
 				<div id="text6" style="color: #0B4CAD; font-size: 13px; text-align: center;">添加品牌</div>
 			</a>
 		</div>
