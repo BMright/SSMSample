@@ -14,10 +14,12 @@ public class HomeController extends BaseController{
 	@Autowired 
 	private HomeFacade homeFacade;
 	
-	
 	@RequestMapping(value="/home")
 	public ModelAndView home() {
 		ModelAndView mv =this.getModelAndView();
+		this.setReqAndRes(request, response);
+		PageData pdData = (PageData) session.getAttribute("username");
+		System.out.println(pdData);
 		
 		PageData pd = new PageData();	
 		pd = homeFacade.getCheckCount(pd);
@@ -31,20 +33,19 @@ public class HomeController extends BaseController{
 		mv.addObject("pd",pd);
 		mv.addObject("pd1",pd1);
 		mv.addObject("pd2",pd2); 
-
+		mv.addObject("pdData", pdData);
+		
 		mv.setViewName("sample/home");		
 		return mv;
 	}
 	
-	
-	/*
-	 * //获取每种的总数
-	 * 
-	 * @RequestMapping(value="getCheckCount")
-	 * 
-	 * @ResponseBody public long getCheckCount() {
-	 * 
-	 * return 0; }
-	 */
+	@RequestMapping(value = "exit")
+	public ModelAndView exit() {
+		
+		this.setReqAndRes(request, response);
+		session.removeAttribute("username");
+		
+		return new ModelAndView("redirect:/login/login");
+	}
 	
 }

@@ -12,6 +12,11 @@ public class HomeService extends BaseService{
 		return one;
 	}
 	
+	//获取总品牌数
+	public Integer getSumBrand(PageData pd) {
+		return this.sqlSessionTemplate.selectOne("sample.homeMapper.getClassCheckCount", pd);
+	}
+	
 	/* 获取一级业态总数 */
 	public Integer getFirstInteger() {
 		return this.sqlSessionTemplate.selectOne("sample.homeMapper.getFirstCheckCount");

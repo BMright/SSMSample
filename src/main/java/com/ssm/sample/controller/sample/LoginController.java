@@ -30,9 +30,12 @@ public class LoginController extends BaseController{
 		PageData username = (PageData) session.getAttribute("username");
 		//判断是否已经登录
 		if (username != null) {
-			mv.addObject("pd",pageData);
-			mv.setViewName("sample/brandAdd");
-			return mv;
+			/*
+			 * mv.addObject("pd",pageData); 
+			 * mv.setViewName("sample/home");
+			 */
+			//重定向到主页面
+			return new ModelAndView("redirect:/home/home");
 		}
 		mv.setViewName("sample/login");
 		return mv;
@@ -49,22 +52,14 @@ public class LoginController extends BaseController{
 		
 		if (pageData.getString("password").equals(password)) {
 			pageData.put("status", "200");
+			//设置session域信息
+			session.setAttribute("username", pageData);
+			//设置session有效时间为30分钟
+			session.setMaxInactiveInterval(30*60);
 		}else {
 			pageData.put("status", "500");
 		}
 		return pageData;
 	}
 	
-	//跳转到主页面
-	@RequestMapping(value = "index")
-	public ModelAndView index() {
-		ModelAndView mv = this.getModelAndView();
-		//设置session域信息
-		session.setAttribute("username", pageData);
-		//设置session有效时间为30分钟
-		session.setMaxInactiveInterval(30*60);
-		mv.addObject("pd",pageData);
-		mv.setViewName("sample/brandAdd");
-		return mv;
-	}
 }

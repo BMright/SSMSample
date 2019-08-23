@@ -57,8 +57,12 @@ public class HomeFacade extends BaseFacade {
 		Integer tInteger = homeService.getThirdInteger();
 		pd.put("tcf", tInteger);
 		
-		for (int i = 1; i < 4; i++) {
-			pd.put("brand_grade", i);
+		for (int i = 0; i < 4; i++) {
+			if (i == 0) {
+				pd.put("brand_grade", "");
+			}else {
+				pd.put("brand_grade", i);
+			}
 			Integer integer = homeService.getClassCheckCount(pd);
 			pd.put("data" + i, integer);
 		}

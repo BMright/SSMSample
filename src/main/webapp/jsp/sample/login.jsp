@@ -43,6 +43,7 @@
 			}
 			
 		</style>
+		<%-- <script src="<%=basePath %>/js/login.js" type="text/javascript"></script> --%>
 		<script type="text/javascript">
 			$(document).keydown(function(event){
 				if(event.keyCode==13){
@@ -64,7 +65,7 @@
                     	success: function (result) {
                     		debugger;
                      		if(result.status == 200){
-                     			window.location.href='<%=path%>/loginAjax/index';
+                     			window.location.href='<%=path%>/home/home';
                      		}else{
                      			alert("密码错误");
                      		}

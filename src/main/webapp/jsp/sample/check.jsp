@@ -154,34 +154,33 @@
 			
 				<div class="div1">按品牌首字母:</div>
 				<div class="word">
-					<label class="l1"><input <c:if test="${pd.first_letter==null }">checked="checked"</c:if> type="radio" name="first_letter" value="" checked="checked" />不限</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='A' }">checked="checked"</c:if> type="radio" name="first_letter" value="A" />A</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='B' }">checked="checked"</c:if> type="radio" name="first_letter" value="B" />B</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='C' }">checked="checked"</c:if> type="radio" name="first_letter" value="C" />C</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='D' }">checked="checked"</c:if> type="radio" name="first_letter" value="D" />D</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='E' }">checked="checked"</c:if> type="radio" name="first_letter" value="E" />E</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='F' }">checked="checked"</c:if> type="radio" name="first_letter" value="F" />F</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='G' }">checked="checked"</c:if> type="radio" name="first_letter" value="G" />G</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='H' }">checked="checked"</c:if> type="radio" name="first_letter" value="H" />H</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='I' }">checked="checked"</c:if> type="radio" name="first_letter" value="I" />I</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='J' }">checked="checked"</c:if> type="radio" name="first_letter" value="J" />J</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='K' }">checked="checked"</c:if> type="radio" name="first_letter" value="K" />K</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='L' }">checked="checked"</c:if> type="radio" name="first_letter" value="L" />L</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='M' }">checked="checked"</c:if> type="radio" name="first_letter" value="M" />M</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='N' }">checked="checked"</c:if> type="radio" name="first_letter" value="N" />N</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='O' }">checked="checked"</c:if> type="radio" name="first_letter" value="O" />O</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='P' }">checked="checked"</c:if> type="radio" name="first_letter" value="P" />P</label> 
-					<label class="l1"><input <c:if test="${pd.first_letter=='Q' }">checked="checked"</c:if>
-						type="radio" name="first_letter" value="Q" />Q</label> <label class="l1"><input <c:if test="${pd.first_letter=='R' }">checked="checked"</c:if>
-						type="radio" name="first_letter" value="R" />R</label> <label class="l1"><input <c:if test="${pd.first_letter=='S' }">checked="checked"</c:if>
-						type="radio" name="first_letter" value="S" />S</label> <label class="l1"><input <c:if test="${pd.first_letter=='T' }">checked="checked"</c:if>
-						type="radio" name="first_letter" value="T" />T</label> <label class="l1"><input <c:if test="${pd.first_letter=='U' }">checked="checked"</c:if>
-						type="radio" name="first_letter" value="U" />U</label> <label class="l1"><input <c:if test="${pd.first_letter=='V' }">checked="checked"</c:if>
-						type="radio" name="first_letter" value="V" />V</label> <label class="l1"><input <c:if test="${pd.first_letter=='W' }">checked="checked"</c:if>
-						type="radio" name="first_letter" value="W" />W</label> <label class="l1"><input <c:if test="${pd.first_letter=='X' }">checked="checked"</c:if>
-						type="radio" name="first_letter" value="X" />X</label> <label class="l1"><input <c:if test="${pd.first_letter=='Y' }">checked="checked"</c:if>
-						type="radio" name="first_letter" value="Y" />Y</label> <label class="l1"><input <c:if test="${pd.first_letter=='Z' }">checked="checked"</c:if>
-						type="radio" name="first_letter" value="Z" />Z</label>
+					<label class="l1"><input <c:if test="${pd.first_letter==null }">checked="checked"</c:if> type="radio" name="first_letter" value="" checked="checked" />不限</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='A' }">checked="checked"</c:if> type="radio" name="first_letter" value="A" />A</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='B' }">checked="checked"</c:if> type="radio" name="first_letter" value="B" />B</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='C' }">checked="checked"</c:if> type="radio" name="first_letter" value="C" />C</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='D' }">checked="checked"</c:if> type="radio" name="first_letter" value="D" />D</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='E' }">checked="checked"</c:if> type="radio" name="first_letter" value="E" />E</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='F' }">checked="checked"</c:if> type="radio" name="first_letter" value="F" />F</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='G' }">checked="checked"</c:if> type="radio" name="first_letter" value="G" />G</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='H' }">checked="checked"</c:if> type="radio" name="first_letter" value="H" />H</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='I' }">checked="checked"</c:if> type="radio" name="first_letter" value="I" />I</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='J' }">checked="checked"</c:if> type="radio" name="first_letter" value="J" />J</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='K' }">checked="checked"</c:if> type="radio" name="first_letter" value="K" />K</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='L' }">checked="checked"</c:if> type="radio" name="first_letter" value="L" />L</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='M' }">checked="checked"</c:if> type="radio" name="first_letter" value="M" />M</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='N' }">checked="checked"</c:if> type="radio" name="first_letter" value="N" />N</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='O' }">checked="checked"</c:if> type="radio" name="first_letter" value="O" />O</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='P' }">checked="checked"</c:if> type="radio" name="first_letter" value="P" />P</label>
+						<label class="l1"><input <c:if test="${pd.first_letter=='Q' }">checked="checked"</c:if> type="radio" name="first_letter" value="Q" />Q</label> 
+						<label class="l1"><input <c:if test="${pd.first_letter=='R' }">checked="checked"</c:if> type="radio" name="first_letter" value="R" />R</label> 
+						<label class="l1"><input <c:if test="${pd.first_letter=='S' }">checked="checked"</c:if> type="radio" name="first_letter" value="S" />S</label> 
+						<label class="l1"><input <c:if test="${pd.first_letter=='T' }">checked="checked"</c:if> type="radio" name="first_letter" value="T" />T</label> 
+						<label class="l1"><input <c:if test="${pd.first_letter=='U' }">checked="checked"</c:if> type="radio" name="first_letter" value="U" />U</label> 
+						<label class="l1"><input <c:if test="${pd.first_letter=='V' }">checked="checked"</c:if> type="radio" name="first_letter" value="V" />V</label> 
+						<label class="l1"><input <c:if test="${pd.first_letter=='W' }">checked="checked"</c:if> type="radio" name="first_letter" value="W" />W</label> 
+						<label class="l1"><input <c:if test="${pd.first_letter=='X' }">checked="checked"</c:if> type="radio" name="first_letter" value="X" />X</label> 
+						<label class="l1"><input <c:if test="${pd.first_letter=='Y' }">checked="checked"</c:if> type="radio" name="first_letter" value="Y" />Y</label> 
+						<label class="l1"><input <c:if test="${pd.first_letter=='Z' }">checked="checked"</c:if> type="radio" name="first_letter" value="Z" />Z</label>
 				</div>
 
 				<div class="div2">一级业态:</div>
