@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ssm.sample.controller.base.BaseController;
+import com.ssm.sample.entity.Page;
 import com.ssm.sample.facade.sample.BrandFacade;
 import com.ssm.sample.util.Base64;
 import com.ssm.sample.util.PageData;
@@ -41,6 +43,37 @@ public class BrandController extends BaseController {
 		pd.put("status", "200");
 		return pd;
 	}
+	
+	@RequestMapping(value = "myBrand")
+	public ModelAndView myBrand() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("sample/mybrand");
+		return mv;
+	}
+	
+	//通过条件获取到全部的品牌列表
+		@RequestMapping(value = "getBrandListByQuery")
+		public ModelAndView getBrandListByQuery(Page page) {
+			ModelAndView mv = new ModelAndView();
+			PageData pd = this.getPageData();
+			System.out.println(page);
+			System.out.println(pd);
+			try {
+				page = brandFacade.setParameterOfPage(page, pd);	
+			} catch (Exception e) {
+				logger.error(e);
+				e.printStackTrace();
+			}
+			List<PageData> brandList = brandFacade.selectBrandList(page);
+			System.out.println(brandList);
+			
+			mv.addObject("brandList", brandList);
+			mv.addObject("pd", pd);
+			mv.addObject("page", page);
+			mv.setViewName("sample/mybrand");
+			return mv;
+		}
+		
 	
 	// 获取一级业态
 	@RequestMapping(value = "getFirstClass")

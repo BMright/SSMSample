@@ -83,4 +83,75 @@
 	<select id="getThirdClass" parameterType="Integer" resultType="pd">
 		SELECT * FROM thrid_classformat where secondClass_id = #{id}
 	</select>
+		<!-- 通过查询条件取得品牌总数 -->
+	<select id="getCheckCount" parameterType="pd" resultType="Integer">  
+ 		select count(1) from brand 
+ 		<where>
+ 			<if test="true">
+ 				1=1
+ 			</if>
+ 			<if test="first_letter != '' and first_letter != null">
+				and first_letter = #{first_letter}
+			</if>
+ 			<if test="firstClass_format != '' and firstClass_format != null">
+ 				and firstClass_format = #{firstClass_format}
+ 			</if>
+ 			<if test="secondClass_format != '' and secondClass_format != null">
+				and secondClass_format = #{secondClass_format}
+			</if>
+			<if test="thirdClass_format != '' and thirdClass_format != null">
+				and thirdClass_format = #{thirdClass_format}
+			</if>
+			<if test="time != '' and time != null">
+				and market_life = #{time}
+			</if>
+			<if test="brandclass != '' and brandclass != null">
+				and brand_grade = #{brandclass}
+			</if>
+			<if test="brand_runtype != '' and brand_runtype != null">
+				and running_type = #{brand_runtype}
+			</if>
+			<if test="brand_type != '' and brand_type != null">
+				and brand_type = #{brand_type}
+			</if>
+ 		</where>
+	</select>
+
+	<!-- 通过查询条件查询所有品牌信息 -->
+	<select id="selectBrandList" parameterType="page" resultType="pd">
+		select * from brand 
+		<where>
+ 			<if test="true">
+ 				1=1
+ 			</if>
+ 			<if test="pd.first_letter != '' and pd.first_letter != null">
+				and first_letter = #{pd.first_letter}
+			</if>
+ 			<if test="pd.firstClass_format != '' and pd.firstClass_format != null">
+ 				and firstClass_format = #{pd.firstClass_format}
+ 			</if>
+ 			<if test="pd.secondClass_format != '' and pd.secondClass_format != null">
+				and secondClass_format = #{pd.secondClass_format}
+			</if>
+			<if test="pd.thirdClass_format != '' and pd.thirdClass_format != null">
+				and thirdClass_format = #{pd.thirdClass_format}
+			</if>
+			<if test="pd.time != '' and pd.time != null">
+				and market_life = #{pd.time}
+			</if>
+			<if test="pd.brandclass != '' and pd.brandclass != null">
+				and brand_grade = #{pd.brandclass}
+			</if>
+			<if test="pd.brand_runtype != '' and pd.brand_runtype != null">
+				and running_type = #{pd.brand_runtype}
+			</if>
+			<if test="pd.brand_type != '' and pd.brand_type != null">
+				and brand_type = #{pd.brand_type}
+			</if>
+ 		</where>
+		<if test="true">
+			limit #{currentResult},#{showCount}
+		</if>
+	</select>
+	
 </mapper>

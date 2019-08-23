@@ -4,6 +4,7 @@ import java.util.List;
 import com.ssm.sample.util.PageData;
 import org.springframework.stereotype.Service;
 
+import com.ssm.sample.entity.Page;
 import com.ssm.sample.service.base.BaseService;
 
 @Service("brandService")
@@ -42,6 +43,25 @@ public class BrandService extends BaseService{
 	//获取三级业态
 	public List<PageData> getThirdClass(Integer id){
 		List<PageData> list = this.sqlSessionTemplate.<PageData>selectList("sample.brandMapper.getThirdClass",id);
+		return list;
+	}
+	
+
+	//通过查询条件获取品牌总数量
+	public Integer getCheckCountByQuery(PageData pd) {
+		Integer total = this.sqlSessionTemplate.selectOne("sample.brandMapper.getCheckCount",pd);
+		return total;
+	}
+	
+	//通过查询条件获取全部品牌列表
+	public List<PageData> selectBrandList(Page page){
+		List<PageData> list = this.sqlSessionTemplate.<PageData>selectList("sample.brandMapper.selectBrandList",page);
+		return list;
+	}
+	
+	//获取数据库内容
+	public List <PageData> selectCheckByPage(){
+		List<PageData> list = this.sqlSessionTemplate.<PageData>selectList("sample.brandMapper.selectCheckByPage");
 		return list;
 	}
 }
