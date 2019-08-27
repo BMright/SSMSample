@@ -22,7 +22,11 @@ public class CheckController extends BaseController{
 	 @RequestMapping(value = "check") 
 	 public ModelAndView check() {
 		 ModelAndView mv = this.getModelAndView(); 
-		 mv.setViewName("sample/check"); return mv; 
+		 this.setReqAndRes(request, response);
+		 PageData pdData = (PageData) session.getAttribute("username");
+		 mv.addObject("pdData", pdData);
+		 mv.setViewName("sample/check"); 
+		 return mv; 
 	}
 	
 	//通过条件获取到全部的品牌列表

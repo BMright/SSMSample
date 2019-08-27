@@ -29,27 +29,14 @@ public class BrandController extends BaseController {
 
 	@Autowired
 	private BrandFacade brandFacade;
-
-	@RequestMapping(value = "add")
-	public ModelAndView addBrand() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/sample/add");
-		return mv;
-	}
 	
-	// 添加品牌
-	/*
-	 * @RequestMapping(value = "brandadd")
-	 * 
-	 * @ResponseBody public PageData brandadd() { PageData pd = this.getPageData();
-	 * System.out.println(pd); }
-	 */
 	// 跳转到品牌添加页面
 	@RequestMapping(value = "brandAdd")
 	public ModelAndView brandAdd() {
-		System.out.println("进入");
 		ModelAndView mv = new ModelAndView();
-		
+		this.setReqAndRes(request, response);
+		PageData pdData = (PageData) session.getAttribute("username");
+		mv.addObject("pdData", pdData);
 		mv.setViewName("sample/brandAdd");
 		return mv;
 	}
@@ -58,6 +45,9 @@ public class BrandController extends BaseController {
 	@RequestMapping(value = "myBrand")
 	public ModelAndView myBrand() {
 		ModelAndView mv = new ModelAndView();
+		this.setReqAndRes(request, response);
+		PageData pdData = (PageData) session.getAttribute("username");
+		mv.addObject("pdData", pdData);
 		mv.setViewName("sample/mybrand");
 		return mv;
 	}

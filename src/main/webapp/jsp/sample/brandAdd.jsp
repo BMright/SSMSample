@@ -201,12 +201,12 @@ function getThirdClass() {
 </script>
 </head>
 <body>
-	<div id="top">
+<div id="top">
 		<div id="toptop">
 			<div id="top1">
 				<img width="30px" src="<%=basePath%>/assets/imgs/brandAdd/top1.png">
-				<span>欢迎您，</span><span>${pd.user_pickname } </span><span>
-					(${pd.user_department }) |</span>
+				<span>欢迎您，</span><span>${pdData.user_pickname } </span><span>
+					(${pdData.user_department }) | </span>
 			</div>
 			<div id="top2">
 				<span> 用户中心  | </span>
@@ -241,9 +241,9 @@ function getThirdClass() {
 				</div>
 			</div>
 			<div id="text5">
-				<a style="font-size: 13px;">我的品牌</a>
+				<a href="<%=path%>/brand/myBrand" style="font-size: 13px;">我的品牌</a>
 			</div>
-			<a href="<%=path%>/brand/add">
+			<a href="<%=path%>/brand/brandAdd">
 				<div id="text6" style="color: #0B4CAD; font-size: 13px; text-align: center;">添加品牌</div>
 			</a>
 		</div>

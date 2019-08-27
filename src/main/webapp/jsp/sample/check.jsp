@@ -136,36 +136,47 @@
 		       .removeAttr('checked')
 		       .removeAttr('selected') // 如果任何radio/checkbox/select inputs有checked or selected 属性，将其移除
 		});
+		
 	});
+	//查看按钮触发事件
+	function look(brand_id){
+		alert(brand_id);
+	};
+	//通过和拒绝按钮触发事件
+	function check(brand_id){
+		alert(brand_id);
+	};
 	
 </script>
-<link rel="stylesheet" href="<%=basePath%>css/brand/check.css" type="text/css" />
+<link rel="stylesheet" href="<%=basePath%>css/brand/check.css"
+	type="text/css" />
 </head>
-<body style="background:#F5F4F3">
-<div id="top">
+<body style="background: #F5F4F3">
+	<div id="top">
 		<div id="toptop">
 			<div id="top1">
 				<img width="30px" src="<%=basePath%>/assets/imgs/brandAdd/top1.png">
-				<span>欢迎您，</span><span>${pd.user_pickname } </span><span>
-					(${pd.user_department }) |</span>
+				<span>欢迎您，</span><span>${pdData.user_pickname } </span><span>
+					(${pdData.user_department }) | </span>
 			</div>
 			<div id="top2">
-				<span> 用户中心</span>
-			</div>
-			<div id="top3">
-				<img src="<%=basePath%>/assets/imgs/brandAdd/top2.png">
+				<span> 用户中心 | </span>
 			</div>
 			<div id="top4">
-				<img src="<%=basePath%>/assets/imgs/brandAdd/top3.png">
+				<a href="<%=basePath%>/home/exit"><img
+					src="<%=basePath%>/assets/imgs/brandAdd/top3.png"></a>
+				<!-- 退出图片 -->
 			</div>
 			<div id="top5">
 				<img src="<%=basePath%>/assets/imgs/brandAdd/top4.png">
 			</div>
-			<div class="top6">商家品牌库</div>
-			<div class="top6">项目中心</div>
-			<div class="top6">我的项目</div>
-			<div class="top6">品牌审核</div>
-			<div class="top6">文档知识库</div>
+			<a href="<%=path%>/home/home"><div style="cursor: pointer"
+					class="top6">商家品牌库</div></a>
+			<div style="cursor: pointer" class="top6">项目中心</div>
+			<div style="cursor: pointer" class="top6">我的项目</div>
+			<a href="<%=path%>/check/check"><div style="cursor: pointer"
+					class="top6">品牌审核</div></a>
+			<div style="cursor: pointer" class="top6">文档知识库</div>
 		</div>
 	</div>
 	<div id="text">
@@ -185,56 +196,90 @@
 				</div>
 			</div>
 			<div id="text5">
-				<a style="font-size: 13px;">我的品牌</a>
+				<a href="<%=path %>/brand/myBrand" style="font-size: 13px;">我的品牌</a>
 			</div>
-			<div id="text6"
-				style="color: #0B4CAD; font-size: 13px; text-align: center;">添加品牌</div>
+			<a href="<%=path%>/brand/add">
+				<div id="text6"
+					style="color: #0B4CAD; font-size: 13px; text-align: center;">添加品牌</div>
+			</a>
 		</div>
 	</div>
-		
 
-		<div class="main">
-			<div class="font">品牌信息审核</div>
-	<form action="<%=path%>/check/getBrandListByQuery" method="post" id="testForm">
+
+	<div class="main">
+		<div class="font">品牌信息审核</div>
+		<form action="<%=path%>/check/getBrandListByQuery" method="post"
+			id="testForm">
 			<div class="content">
-			
+
 				<div class="div1">按品牌首字母:</div>
 				<div class="word">
-					<label class="l1"><input <c:if test="${pd.first_letter==null }">checked="checked"</c:if> type="radio" name="first_letter" value="" checked="checked" />不限</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='A' }">checked="checked"</c:if> type="radio" name="first_letter" value="A" />A</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='B' }">checked="checked"</c:if> type="radio" name="first_letter" value="B" />B</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='C' }">checked="checked"</c:if> type="radio" name="first_letter" value="C" />C</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='D' }">checked="checked"</c:if> type="radio" name="first_letter" value="D" />D</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='E' }">checked="checked"</c:if> type="radio" name="first_letter" value="E" />E</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='F' }">checked="checked"</c:if> type="radio" name="first_letter" value="F" />F</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='G' }">checked="checked"</c:if> type="radio" name="first_letter" value="G" />G</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='H' }">checked="checked"</c:if> type="radio" name="first_letter" value="H" />H</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='I' }">checked="checked"</c:if> type="radio" name="first_letter" value="I" />I</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='J' }">checked="checked"</c:if> type="radio" name="first_letter" value="J" />J</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='K' }">checked="checked"</c:if> type="radio" name="first_letter" value="K" />K</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='L' }">checked="checked"</c:if> type="radio" name="first_letter" value="L" />L</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='M' }">checked="checked"</c:if> type="radio" name="first_letter" value="M" />M</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='N' }">checked="checked"</c:if> type="radio" name="first_letter" value="N" />N</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='O' }">checked="checked"</c:if> type="radio" name="first_letter" value="O" />O</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='P' }">checked="checked"</c:if> type="radio" name="first_letter" value="P" />P</label>
-						<label class="l1"><input <c:if test="${pd.first_letter=='Q' }">checked="checked"</c:if> type="radio" name="first_letter" value="Q" />Q</label> 
-						<label class="l1"><input <c:if test="${pd.first_letter=='R' }">checked="checked"</c:if> type="radio" name="first_letter" value="R" />R</label> 
-						<label class="l1"><input <c:if test="${pd.first_letter=='S' }">checked="checked"</c:if> type="radio" name="first_letter" value="S" />S</label> 
-						<label class="l1"><input <c:if test="${pd.first_letter=='T' }">checked="checked"</c:if> type="radio" name="first_letter" value="T" />T</label> 
-						<label class="l1"><input <c:if test="${pd.first_letter=='U' }">checked="checked"</c:if> type="radio" name="first_letter" value="U" />U</label> 
-						<label class="l1"><input <c:if test="${pd.first_letter=='V' }">checked="checked"</c:if> type="radio" name="first_letter" value="V" />V</label> 
-						<label class="l1"><input <c:if test="${pd.first_letter=='W' }">checked="checked"</c:if> type="radio" name="first_letter" value="W" />W</label> 
-						<label class="l1"><input <c:if test="${pd.first_letter=='X' }">checked="checked"</c:if> type="radio" name="first_letter" value="X" />X</label> 
-						<label class="l1"><input <c:if test="${pd.first_letter=='Y' }">checked="checked"</c:if> type="radio" name="first_letter" value="Y" />Y</label> 
-						<label class="l1"><input <c:if test="${pd.first_letter=='Z' }">checked="checked"</c:if> type="radio" name="first_letter" value="Z" />Z</label>
+					<label class="l1"><input
+						<c:if test="${pd.first_letter==null }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="" checked="checked" />不限</label>
+					<label class="l1"><input
+						<c:if test="${pd.first_letter=='A' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="A" />A</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='B' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="B" />B</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='C' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="C" />C</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='D' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="D" />D</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='E' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="E" />E</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='F' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="F" />F</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='G' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="G" />G</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='H' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="H" />H</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='I' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="I" />I</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='J' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="J" />J</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='K' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="K" />K</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='L' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="L" />L</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='M' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="M" />M</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='N' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="N" />N</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='O' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="O" />O</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='P' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="P" />P</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='Q' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="Q" />Q</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='R' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="R" />R</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='S' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="S" />S</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='T' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="T" />T</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='U' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="U" />U</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='V' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="V" />V</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='W' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="W" />W</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='X' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="X" />X</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='Y' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="Y" />Y</label> <label class="l1"><input
+						<c:if test="${pd.first_letter=='Z' }">checked="checked"</c:if>
+						type="radio" name="first_letter" value="Z" />Z</label>
 				</div>
 
 				<div class="div2">一级业态:</div>
-				<select name="firstClass" class="first" id="first-trade" onchange="getSecondClass()">
+				<select name="firstClass" class="first" id="first-trade"
+					onchange="getSecondClass()">
 					<option value="">全部</option>
 				</select>
 				<div class="div3">二级业态:</div>
-				<select name="secondClass" class="second" id="second-trade" onchange="getThirdClass()">
+				<select name="secondClass" class="second" id="second-trade"
+					onchange="getThirdClass()">
 					<option value="">全部</option>
 				</select>
 				<div class="div4">三级业态:</div>
@@ -244,65 +289,116 @@
 
 				<div class="div5">品牌等级:</div>
 				<select name="brand_grade" class="forth" id="grade">
-					<option <c:if test="${pd.brand_grade=='' }"> selected="selected"</c:if> value="">全部</option>
-					<option <c:if test="${pd.brand_grade==1 }"> selected="selected"</c:if> value="1">一线</option>
-					<option <c:if test="${pd.brand_grade==2}"> selected="selected"</c:if> value="2">二线</option>
-					<option <c:if test="${pd.brand_grade==3 }"> selected="selected"</c:if> value="3">三线</option>
+					<option
+						<c:if test="${pd.brand_grade=='' }"> selected="selected"</c:if>
+						value="">全部</option>
+					<option
+						<c:if test="${pd.brand_grade==1 }"> selected="selected"</c:if>
+						value="1">一线</option>
+					<option
+						<c:if test="${pd.brand_grade==2}"> selected="selected"</c:if>
+						value="2">二线</option>
+					<option
+						<c:if test="${pd.brand_grade==3 }"> selected="selected"</c:if>
+						value="3">三线</option>
 				</select>
 				<div class="div6">提交审核时间:</div>
 				<div class="time">
-					<label class="l2"><input type="radio" name="submit_time" value="" checked="checked" />不限</label> 
-					<label class="l2"><input type="radio" name="submit_time" value="7" />7天</label> 
-					<label class="l2"><input type="radio" name="submit_time" value="30" />一个月</label> 
-					<label class="l2"><input type="radio" name="submit_time" value="365" />1年</label>
+					<label class="l2"><input type="radio" name="submit_time"
+						value="" checked="checked" />不限</label> <label class="l2"><input
+						type="radio" name="submit_time" value="7" />7天</label> <label class="l2"><input
+						type="radio" name="submit_time" value="30" />一个月</label> <label
+						class="l2"><input type="radio" name="submit_time"
+						value="365" />1年</label>
 				</div>
 
 				<div class="div7">品牌信息类型:</div>
 				<select name="brand_type" class="message">
-					<option <c:if test="${pd.brand_type=='' }"> selected="selected"</c:if> value="">全部</option>
-					<option <c:if test="${pd.brand_type==1 }"> selected="selected"</c:if> value="1">基本信息编辑</option>
-					<option <c:if test="${pd.brand_type==2 }"> selected="selected"</c:if> value="2">品牌添加</option>
-					<option <c:if test="${pd.brand_type==3 }"> selected="selected"</c:if> value="3">添加品牌代理公司</option>
-					<option <c:if test="${pd.brand_type==4 }"> selected="selected"</c:if> value="4">添加品牌公司</option>
-					<option <c:if test="${pd.brand_type==5 }"> selected="selected"</c:if> value="5">添加品牌直营公司</option>
+					<option
+						<c:if test="${pd.brand_type=='' }"> selected="selected"</c:if>
+						value="">全部</option>
+					<option
+						<c:if test="${pd.brand_type==1 }"> selected="selected"</c:if>
+						value="1">基本信息编辑</option>
+					<option
+						<c:if test="${pd.brand_type==2 }"> selected="selected"</c:if>
+						value="2">品牌添加</option>
+					<option
+						<c:if test="${pd.brand_type==3 }"> selected="selected"</c:if>
+						value="3">添加品牌代理公司</option>
+					<option
+						<c:if test="${pd.brand_type==4 }"> selected="selected"</c:if>
+						value="4">添加品牌公司</option>
+					<option
+						<c:if test="${pd.brand_type==5 }"> selected="selected"</c:if>
+						value="5">添加品牌直营公司</option>
 				</select>
 				<div class="div8">品牌维护类型:</div>
 				<select name="running_type" class="wh">
-					<option <c:if test="${pd.running_type=='' }"> selected="selected"</c:if> value="">全部</option>
-					<option <c:if test="${pd.running_type==1 }"> selected="selected"</c:if> value="1">品牌公司</option>
-					<option <c:if test="${pd.running_type==2 }"> selected="selected"</c:if> value="2">代理公司</option>
-					<option <c:if test="${pd.running_type==3 }"> selected="selected"</c:if> value="3">直营公司</option>
+					<option
+						<c:if test="${pd.running_type=='' }"> selected="selected"</c:if>
+						value="">全部</option>
+					<option
+						<c:if test="${pd.running_type==1 }"> selected="selected"</c:if>
+						value="1">品牌公司</option>
+					<option
+						<c:if test="${pd.running_type==2 }"> selected="selected"</c:if>
+						value="2">代理公司</option>
+					<option
+						<c:if test="${pd.running_type==3 }"> selected="selected"</c:if>
+						value="3">直营公司</option>
 				</select>
 				<div class="div9">审核状态:</div>
 				<select name="check_status" class="state">
-					<option <c:if test="${pd.check_status=='' }"> selected="selected"</c:if> value="">全部</option>
-					<option <c:if test="${pd.check_status==1 }"> selected="selected"</c:if> value="0">未审核</option>
-					<option <c:if test="${pd.check_status==2 }"> selected="selected"</c:if> value="1">审核中</option>
-					<option <c:if test="${pd.check_status==3 }"> selected="selected"</c:if> value="2">审核通过</option>
-					<option <c:if test="${pd.check_status==4 }"> selected="selected"</c:if> value="3">审核未通过</option>
+					<option
+						<c:if test="${pd.check_status=='' }"> selected="selected"</c:if>
+						value="">全部</option>
+					<option
+						<c:if test="${pd.check_status==1 }"> selected="selected"</c:if>
+						value="0">未审核</option>
+					<option
+						<c:if test="${pd.check_status==2 }"> selected="selected"</c:if>
+						value="1">审核中</option>
+					<option
+						<c:if test="${pd.check_status==3 }"> selected="selected"</c:if>
+						value="2">审核通过</option>
+					<option
+						<c:if test="${pd.check_status==4 }"> selected="selected"</c:if>
+						value="3">审核未通过</option>
 				</select>
 
 				<div class="div10">品牌名:</div>
-				<input name="brand_name" value="${pd.brand_name }" type="text" class="name" placeholder="品牌名" />
+				<input name="brand_name" value="${pd.brand_name }" type="text"
+					class="name" placeholder="品牌名" />
 				<div class="div11">维护人员:</div>
-				<input name="maintainer" value="${pd.maintainer }" type="text" class="people" placeholder="姓名/工号" />
-				<input type="button" id="sub" value="查询" class="require"></input>
-				<input type="button" id="res" value="重置" class="reset"/>
-			
-			<div style="position: absolute; height: 2px; background-color: #034D98; width: 1340px; margin-top: 436px;"></div>
+				<input name="maintainer" value="${pd.maintainer }" type="text"
+					class="people" placeholder="姓名/工号" /> <input type="button"
+					id="sub" value="查询" class="require"></input> <input type="button"
+					id="res" value="重置" class="reset" />
+
+				<div
+					style="position: absolute; height: 2px; background-color: #034D98; width: 1340px; margin-top: 436px;"></div>
 				<div class="on">审核通过</div>
 				<div class="off">审核拒绝</div>
 				<div class="page">每页显示：</div>
-				<select name="showCount" class="pages" id="pageSize" onChange="nextPage(1)">
-					<option <c:if test="${page.showCount==3 }"> selected="selected"</c:if> value="3">3</option>
-					<option <c:if test="${page.showCount==5 }"> selected="selected"</c:if> value="5">5</option>
-					<option <c:if test="${page.showCount==10 }"> selected="selected"</c:if> value="10">10</option>
-				</select>
-				
-				<input name="currentPage" id="currentPage" value="1" style="display:none"/><!--  -->
-				
-				<table class="table" border="1" cellspacing="0" cellpadding="5" frame="hsides">
-					 <tr align="center" bgcolor="#034D98"  >
+				<select name="showCount" class="pages" id="pageSize"
+					onChange="nextPage(1)">
+					<option
+						<c:if test="${page.showCount==3 }"> selected="selected"</c:if>
+						value="3">3</option>
+					<option
+						<c:if test="${page.showCount==5 }"> selected="selected"</c:if>
+						value="5">5</option>
+					<option
+						<c:if test="${page.showCount==10 }"> selected="selected"</c:if>
+						value="10">10</option>
+				</select> <input name="currentPage" id="currentPage" value="1"
+					style="display: none" />
+				<!--  -->
+
+				<table class="table" border="1" cellspacing="0" cellpadding="5"
+					frame="hsides">
+					<tr align="center" bgcolor="#034D98">
 						<!-- <th style="width: 80px;" class="sp"><input type="checkbox" name="All"
 							id="All" value="全选" onClick="funSelAll(this)" />全选</th> -->
 						<th class="sp">一级业态</th>
@@ -316,39 +412,41 @@
 						<th class="sp">操作</th>
 					</tr>
 					<tbody id="tbShow">
-							<c:forEach items="${brandList}" var="row" varStatus="vs"><!--  varStatus="vs" -->
-								<tr>
-									<td>${row.ch_name }</td>
-									<td>${row.en_name }</td>
-									<td>${row.brand_alias }</td>
-									<td>${row.first_letter }</td>
-									<td>${row.maintainer }</td>
-									<td>${row.checkcontent_type }</td>
-									<td>${row.submit_time }</td>
-									<td>${row.check_status }</td>
-									<td><a style="color: #034D98;" onclick="check(${var.empId})">查看</a>
-										<a style="color: #034D98;" onclick="pass(${var.empId})">通过</a>
-										<a style="color: #034D98;" onclick="refuse(${var.empId})">拒绝</a>
-									</td>
-								</tr>
-							</c:forEach>
+						<c:forEach items="${brandList}" var="row" varStatus="vs">
+							<!--  varStatus="vs" -->
+							<tr>
+								<td>${row.ch_name }</td>
+								<td>${row.en_name }</td>
+								<td>${row.brand_alias }</td>
+								<td>${row.first_letter }</td>
+								<td>${row.maintainer }</td>
+								<td>${row.checkcontent_type }</td>
+								<td>${row.submit_time }</td>
+								<td>${row.check_status }</td>
+								<td>
+								<!-- onclick="check(${row.ch_name})" -->
+									<a href="javascript:look(${row.brand_id })" style="color: #034D98;" >查看</a> 
+									<a href="javascript:check(${row.brand_id })" style="color: #034D98;" >通过</a> 
+									<a href="javascript:check(${row.brand_id })" style="color: #034D98;" >拒绝</a>
+								</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-				<div class="buttom" style="text-align:center">
+				<div class="buttom" style="text-align: center">
 					<div>${page.pageStr}</div>
 				</div>
-				
+
 				<a href="#">
 					<div class="up">^</div>
 				</a>
-			
+
 				<hr style="background-color: blue; height: 3px;" />
-				<div class="end">
-					利林置业商业地产综合业务管理平台·商家品牌库 COPYRIGHT @ 2016 ALL RIGHT RESSRVED
-				</div>
+				<div class="end">利林置业商业地产综合业务管理平台·商家品牌库 COPYRIGHT @ 2016 ALL
+					RIGHT RESSRVED</div>
 			</div>
 		</form>
-		</div>
-	
+	</div>
+
 </body>
 </html>
