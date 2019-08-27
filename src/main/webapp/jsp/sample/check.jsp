@@ -152,7 +152,7 @@
 	type="text/css" />
 </head>
 <body style="background: #F5F4F3">
-	<div id="top">
+<div id="top">
 		<div id="toptop">
 			<div id="top1">
 				<img width="30px" src="<%=basePath%>/assets/imgs/brandAdd/top1.png">
@@ -160,23 +160,19 @@
 					(${pdData.user_department }) | </span>
 			</div>
 			<div id="top2">
-				<span> 用户中心 | </span>
+				<span> 用户中心  | </span>
 			</div>
 			<div id="top4">
-				<a href="<%=basePath%>/home/exit"><img
-					src="<%=basePath%>/assets/imgs/brandAdd/top3.png"></a>
-				<!-- 退出图片 -->
+				<a href="<%=basePath %>/home/exit"><img src="<%=basePath%>/assets/imgs/brandAdd/top3.png"></a><!-- 退出图片 -->
 			</div>
 			<div id="top5">
 				<img src="<%=basePath%>/assets/imgs/brandAdd/top4.png">
 			</div>
-			<a href="<%=path%>/home/home"><div style="cursor: pointer"
-					class="top6">商家品牌库</div></a>
-			<div style="cursor: pointer" class="top6">项目中心</div>
-			<div style="cursor: pointer" class="top6">我的项目</div>
-			<a href="<%=path%>/check/check"><div style="cursor: pointer"
-					class="top6">品牌审核</div></a>
-			<div style="cursor: pointer" class="top6">文档知识库</div>
+			<a href="<%=path%>/home/home"><div style="cursor:pointer" class="top6">商家品牌库</div></a>
+			<div style="cursor:pointer" class="top6">项目中心</div>
+			<div style="cursor:pointer" class="top6">我的项目</div>
+			<a href="<%=path%>/check/check"><div style="cursor:pointer" class="top6">品牌审核</div></a>
+			<div style="cursor:pointer" class="top6">文档知识库</div>
 		</div>
 	</div>
 	<div id="text">
@@ -196,11 +192,10 @@
 				</div>
 			</div>
 			<div id="text5">
-				<a href="<%=path %>/brand/myBrand" style="font-size: 13px;">我的品牌</a>
+				<a href="<%=path%>/brand/myBrand" style="font-size: 13px;">我的品牌</a>
 			</div>
-			<a href="<%=path%>/brand/add">
-				<div id="text6"
-					style="color: #0B4CAD; font-size: 13px; text-align: center;">添加品牌</div>
+			<a href="<%=path%>/brand/brandAdd">
+				<div id="text6" style="color: #0B4CAD; font-size: 13px; text-align: center;">添加品牌</div>
 			</a>
 		</div>
 	</div>
