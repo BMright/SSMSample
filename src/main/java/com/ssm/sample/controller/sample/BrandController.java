@@ -30,6 +30,13 @@ public class BrandController extends BaseController {
 	@Autowired
 	private BrandFacade brandFacade;
 
+	@RequestMapping(value = "add")
+	public ModelAndView addBrand() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/sample/add");
+		return mv;
+	}
+	
 	// 添加品牌
 	@RequestMapping(value = "brandadd")
 	@ResponseBody

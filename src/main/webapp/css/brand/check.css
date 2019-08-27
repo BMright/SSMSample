@@ -1,34 +1,142 @@
-.bo{
-	width: 1920px;
-	height: auto;
-	padding: 0;
-	margin-left: auto;
-	margin-right: auto;
+body{background:#F5F4F3;}
+#top {
+	width: 100%;
+	height: 33px;
+	background: #D9B355;
+}
+
+#toptop {
+	width: 1100px;
+	height: 33px;
+	margin-left: 395px;
+}
+
+#top1 {
+	height: 30px;
+	width: 175px;
+	line-height: 33px;
+	float: left;
+	color: white;
+}
+
+#top2 {
+	height: 30px;
+	width: 50px;
+	line-height: 30px;
+	color: white;
+	float: left;
+	background: #D9B355;
+}
+
+#top3 {
+	height: 33px;
+	width: 16px;
+	float: left;
+}
+
+#top4 {
+	height: 30px;
+	width: 60px;
+	float: left;
+	padding-top: 3px;
+	background: #D9B355;
+}
+
+#top5 {
+	height: 33px;
+	width: 250px;
+	float: left;
+	margin-left: 130px;
+	background: #D9B355;
+}
+
+.top6 {
+	height: 26px;
+	width: 70px;
+	float: left;
+	padding-top: 7px;
+	text-align: center;
+	background: #D9B355;
+	font-size: 13px;
+	color: white;
+}
+
+#text {
+	width: auto;
+	height: 116px;
+	background:white;
+}
+
+#texttext {
+	width: 1100px;
+	height: 116px;
+	margin-left: 395px;
+}
+
+#text1 {
+	width: 430px;
+	height: 116px;
+	float: left;
+}
+
+#text2 {
+	width: 420px;
+	height: 42px;
+	float: left;
+	margin-top: 28px;
+	background: #034D98;
+}
+
+#text3 {
+	width: 26px;
+	height: 36px;
+	float: left;
+	outline: none;
+	margin-top: 3px;
+	margin-left: 2px;
+	padding-top: 4px;
+	padding-left: 3px;
+	background: #FFFFFF;
+}
+
+.txt3 {
+	outline: none;
 }
 
 
-.header{
-	position: absolute;
-	width: 1920px;
-	height: 40px;
-	background-color: #D9B355;
-	margin-left: -10px;
-	margin-top: -10px;
+#text4 {
+	width: 390px;
+	height: 42px;
+	margin-top: 2px;
+	float: left;
 }
-.middle{
-	position: absolute;
-	width: 1920px;
-	height: 140px;
-	margin-left: -10px;
-	
-	margin-top: 30px;
+
+#text5 {
+	width: 60px;
+	height: 76px;
+	float: left;
+	padding-top: 40px;
+	margin-left: 20px;
 }
+
+#text6 {
+	width: 140px;
+	height: 32px;
+	line-height: 32px;
+	float: left;
+	border: solid 1px black;
+	border-radius: 5px;
+	float: left;
+	border: solid 1px black;
+	border-radius: 5px;
+	margin-top: 32px;
+}
+
+
 .main{
-	position: absolute;
+	margin-top:0px;
 	width: 1920px;
-	height:auto;/* height: 1060px; */
 	margin-left: -10px;
-	margin-top: 170px;
 	background-color: #F5F4F3;
 }
 

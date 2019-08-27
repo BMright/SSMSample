@@ -141,11 +141,57 @@
 </script>
 <link rel="stylesheet" href="<%=basePath%>css/brand/check.css" type="text/css" />
 </head>
-<body>
-	<div class="bo">
-		<div class="header"></div>
-
-		<div class="middle"></div>
+<body style="background:#F5F4F3">
+<div id="top">
+		<div id="toptop">
+			<div id="top1">
+				<img width="30px" src="<%=basePath%>/assets/imgs/brandAdd/top1.png">
+				<span>欢迎您，</span><span>${pd.user_pickname } </span><span>
+					(${pd.user_department }) |</span>
+			</div>
+			<div id="top2">
+				<span> 用户中心</span>
+			</div>
+			<div id="top3">
+				<img src="<%=basePath%>/assets/imgs/brandAdd/top2.png">
+			</div>
+			<div id="top4">
+				<img src="<%=basePath%>/assets/imgs/brandAdd/top3.png">
+			</div>
+			<div id="top5">
+				<img src="<%=basePath%>/assets/imgs/brandAdd/top4.png">
+			</div>
+			<div class="top6">商家品牌库</div>
+			<div class="top6">项目中心</div>
+			<div class="top6">我的项目</div>
+			<div class="top6">品牌审核</div>
+			<div class="top6">文档知识库</div>
+		</div>
+	</div>
+	<div id="text">
+		<div id="texttext">
+			<div id="text1">
+				<img src="<%=basePath%>/assets/imgs/brandAdd/text1.png" />
+			</div>
+			<div id="text2">
+				<div id="text3">
+					<img class="txt3"
+						src="<%=basePath%>/assets/imgs/brandAdd/text2.png" />
+				</div>
+				<div id="text4">
+					<input type="text" style="height: 37px; width: 315px;"
+						placeholder="请输入品牌，拓展联系人信息等">&emsp;&emsp;<label
+						style="color: white;">搜索</label>
+				</div>
+			</div>
+			<div id="text5">
+				<a style="font-size: 13px;">我的品牌</a>
+			</div>
+			<div id="text6"
+				style="color: #0B4CAD; font-size: 13px; text-align: center;">添加品牌</div>
+		</div>
+	</div>
+		
 
 		<div class="main">
 			<div class="font">品牌信息审核</div>
@@ -303,6 +349,6 @@
 			</div>
 		</form>
 		</div>
-	</div>
+	
 </body>
 </html>
