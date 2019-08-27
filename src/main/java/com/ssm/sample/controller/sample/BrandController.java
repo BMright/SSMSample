@@ -38,19 +38,23 @@ public class BrandController extends BaseController {
 	}
 	
 	// 添加品牌
-	@RequestMapping(value = "brandadd")
-	@ResponseBody
-	public PageData brandadd() {
-		PageData pd = this.getPageData();
-		System.out.println(pd);
+	/*
+	 * @RequestMapping(value = "brandadd")
+	 * 
+	 * @ResponseBody public PageData brandadd() { PageData pd = this.getPageData();
+	 * System.out.println(pd); }
+	 */
+	// 跳转到品牌添加页面
+	@RequestMapping(value = "brandAdd")
+	public ModelAndView brandAdd() {
+		System.out.println("进入");
+		ModelAndView mv = new ModelAndView();
 		
-		brandFacade.insertOneBrand(pd);
-		/* System.out.println("添加品牌"); */
-		
-		pd.put("status", "200");
-		return pd;
+		mv.setViewName("sample/brandAdd");
+		return mv;
 	}
 	
+	// 跳转到我的品牌初始页面
 	@RequestMapping(value = "myBrand")
 	public ModelAndView myBrand() {
 		ModelAndView mv = new ModelAndView();
@@ -59,28 +63,41 @@ public class BrandController extends BaseController {
 	}
 	
 	//通过条件获取到全部的品牌列表
-		@RequestMapping(value = "getBrandListByQuery")
-		public ModelAndView getBrandListByQuery(Page page) {
-			ModelAndView mv = new ModelAndView();
-			PageData pd = this.getPageData();
-			System.out.println(page);
-			System.out.println(pd);
-			try {
-				page = brandFacade.setParameterOfPage(page, pd);	
-			} catch (Exception e) {
-				logger.error(e);
-				e.printStackTrace();
-			}
-			List<PageData> brandList = brandFacade.selectBrandList(page);
-			System.out.println(brandList);
-			
-			mv.addObject("brandList", brandList);
-			mv.addObject("pd", pd);
-			mv.addObject("page", page);
-			mv.setViewName("sample/mybrand");
-			return mv;
+	@RequestMapping(value = "getBrandListByQuery")
+	public ModelAndView getBrandListByQuery(Page page) {
+		ModelAndView mv = new ModelAndView();
+		PageData pd = this.getPageData();
+		System.out.println(page);
+		System.out.println(pd);
+		try {
+			page = brandFacade.setParameterOfPage(page, pd);	
+		} catch (Exception e) {
+			logger.error(e);
+			e.printStackTrace();
 		}
+		List<PageData> brandList = brandFacade.selectBrandList(page);
+		System.out.println(brandList);
+			
+		mv.addObject("brandList", brandList);
+		mv.addObject("pd", pd);
+		mv.addObject("page", page);
+		mv.setViewName("sample/mybrand");
+		return mv;
+	}
+	
+	// 向数据库中添加品牌
+	@RequestMapping(value = "brandadd")
+	@ResponseBody
+	public PageData brandadd() {
+		PageData pd = this.getPageData();
+		System.out.println(pd);
 		
+		brandFacade.insertOneBrand(pd);
+		/* System.out.println("添加品牌"); */
+			
+		pd.put("status", "200");
+		return pd;
+	}
 	
 	// 获取一级业态
 	@RequestMapping(value = "getFirstClass")

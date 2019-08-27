@@ -736,11 +736,113 @@ li{
 	font-size: 12px;
 	font-weight: 1000;
 }
+/*拓展联系人*/
+ #div311{
+	width:1000px;
+	height: 110px;
+	margin: auto;
+	margin-top: 25px;
+	border-bottom: solid;
+	border-color: #EEEDEB;
+	border-width: 1px;
+}
+#ul3111{
+	width: 100%;
+	margin: auto;
+	height: 35px;
+}
+#ul3111 li{
+	float: left;
+}
+#ul3111 button{
+	width: 120px;
+	height: 32px;
+	border-style:solid;
+	border-color: #034D98;
+	border-radius:5px;
+	border-width: 1px;
+	background: white;
+	color: #034D98;
+}
+#ul3112{
+	width: 100%;
+	height: 78px;
+	margin: auto;
+}
+#ul3112 li{
+	border-right: solid;
+	border-color: white;
+	border-width: 1px;
+	width: 152px;
+	height: 35px;
+	float: left;
+	margin-top: 10px;
+	background: #034D98;
+	
+}
+#ul3112 p{
+	text-align: center;
+	color: white;
+	margin: auto;
+	margin-top:8px;
+	font-size: 12px;
+	font-weight: 1000;
+}
+/*表格*/
+.table{
+	width: 920px;	
+}
 
+.sp{
+	/* color: white;
+	font-size: 0.8em;
+	align:center;
+	font-size: 12px;
+	text-align:center;
+	font-weight: 1000; */
+	text-align: center;
+	color: white;
+	margin: auto;
+	margin-top:8px;
+	font-size: 12px;
+	font-weight: bold;
+}
 /*定位*/
 #div4{
-	border:1px solid red;
-	float:left;
-	height:400px;
-	width:200px;	
+	/* border:1px solid red; */
+	
+	width: 200px;
+    height: 400px;
+    position: fixed; 
+    right:150px;
+    bottem:40%;
+    margin: 7px;
+    border-radius: 3px;
+    background: #F1F1F1;
+    overflow: hidden;
+    transition: all .6s linear;
+    }
+.active{
+     font-weight: 600;
+}
+.menu-scroll{
+      width: 220px;
+      height: 600px;
+      overflow-y: auto;
+}
+.hide-menu-scroll{
+      width: 200px;
+}
+.menu-scroll ul{
+      list-style-type: none;
+}
+.menu-scroll ul li{
+      font-size: 14px;
+      padding: 10px;
+}
+a{
+       /* color: seagreen; */
+}
+ a{
+        text-decoration: none;
 }
