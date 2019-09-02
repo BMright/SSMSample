@@ -11,6 +11,17 @@ import com.ssm.sample.util.PageData;
 @Service("checkService")
 public class CheckService extends BaseService{
 	
+	//通过id改变品牌审核状态
+	public void changeStatus(PageData pd) {
+		this.sqlSessionTemplate.selectOne("sample.checkMapper.changeStatus", pd);
+	}
+	
+	//通过id查询品牌信息
+	public PageData getBrandById(Integer id) {
+		PageData pd = this.sqlSessionTemplate.selectOne("sample.checkMapper.getBrandById", id);
+		return pd;
+	}
+	
 	//通过查询条件获取品牌总数量
 	public Integer getCheckCountByQuery(PageData pd) {
 		Integer total = this.sqlSessionTemplate.selectOne("sample.checkMapper.getCheckCount",pd);

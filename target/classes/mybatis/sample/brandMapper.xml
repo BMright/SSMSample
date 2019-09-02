@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sample.brandMapper">
+	<!-- 获取表中字段名 -->
+	<select id="getAllColumn" resultType="String">
+		Select COLUMN_NAME
+		from INFORMATION_SCHEMA.COLUMNS
+		Where table_name = 'brand'
+		AND table_schema = 'ssmdb'
+	</select>
+	
+	<!-- 获取全部信息 -->
+	<select id="getAllInfo" resultType="pd">
+		select * from brand
+	</select>
 	
 	<!-- 添加扩展联系人 -->
 	<insert id="insertOnePeople" parameterType="pd">

@@ -3,10 +3,13 @@ package com.ssm.sample.controller.sample;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.net.ftp.parser.MVSFTPEntryParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,6 +24,7 @@ import com.ssm.sample.controller.base.BaseController;
 import com.ssm.sample.entity.Page;
 import com.ssm.sample.facade.sample.BrandFacade;
 import com.ssm.sample.util.Base64;
+import com.ssm.sample.util.ExportExcel;
 import com.ssm.sample.util.PageData;
 
 @Controller
@@ -29,6 +33,83 @@ public class BrandController extends BaseController {
 
 	@Autowired
 	private BrandFacade brandFacade;
+	
+	//导出excel
+	@RequestMapping(value = "exportExcel")
+	@ResponseBody
+	public PageData exportExcel() {
+		/*
+		List<String> list = brandFacade.getAllColumn();
+		System.out.println("list.size()=" + list.size());
+		String rows = "序号,";
+		for (int i = 0; i < list.size(); i++) {
+			rows += list.get(i) + ",";
+			System.out.println(list.get(i));
+		}
+		System.out.println(rows);
+		String[] rowsName = rows.split(",");
+		System.out.println("rows.length=" + rowsName.length);
+		*/
+		PageData pd = this.getPageData();
+		String fileName = pd.getString("fileName");
+		String filePath = pd.getString("filePath");
+		
+		String[] rowsName = new String[]{"序号","品牌中文名","品牌英文名","品牌等级","品牌类型","运营类型","一级业态","二级业态","三级业态","品牌官网","总部电话"};
+		
+		List<PageData> brandList = brandFacade.getAllInfo();
+
+		List<Object[]> dataList= new ArrayList<Object[]>();
+		for(int i=0;i<brandList.size();i++) {
+			Object[] obj = new Object[11];
+			
+			/*
+			System.out.println(brandList.get(i).getString("headquarters_telephone"));
+			System.out.println(brandList.get(i).getString("official_website"));
+			System.out.println(brandList.get(i).getString("thirdClass_format"));
+			System.out.println(brandList.get(i).getString("secondClass_format"));
+			System.out.println(brandList.get(i).getString("firstClass_format"));
+			System.out.println(brandList.get(i).getString("running_type"));
+			System.out.println(brandList.get(i).getString("brand_type"));
+			System.out.println(brandList.get(i).getString("brand_grade"));
+			System.out.println(brandList.get(i).getString("en_name"));
+			System.out.println(brandList.get(i).getString("ch_name"));
+			System.out.println(i+1);
+			*/
+			
+			obj[10] = brandList.get(i).getString("headquarters_telephone");
+			obj[9] = brandList.get(i).getString("official_website");
+			obj[8] = brandList.get(i).getString("thirdClass_format");
+			obj[7] = brandList.get(i).getString("secondClass_format");
+			obj[6] = brandList.get(i).getString("firstClass_format");
+			obj[5] = brandList.get(i).getString("running_type");
+			obj[4] = brandList.get(i).getString("brand_type");
+			obj[3] = brandList.get(i).getString("brand_grade");
+			obj[2] = brandList.get(i).getString("en_name");
+			obj[1] = brandList.get(i).getString("ch_name");
+			obj[0] = i+1;
+			
+			dataList.add(obj);
+		}
+		
+		// 定义Excel文件名 
+		//String fileName="文档"; 
+		// 定义存放路 径 
+		//String filePath = "G:/";
+		
+		HttpServletResponse response = null; //创建CommonExcel对象，调用downloadExcel()对象导出Excel 
+		ExportExcel ex = new
+		ExportExcel(rowsName, dataList,response,fileName,filePath); 
+		try {
+			ex.downloadExcel(); 
+			pd.put("status", 200);
+		} catch (Exception e) 
+		{ 
+			pd.put("status", 500);
+			e.printStackTrace(); 
+		}
+		
+		return pd;
+	}
 	
 	// 跳转到品牌添加页面
 	@RequestMapping(value = "brandAdd")

@@ -19,6 +19,40 @@ public class CheckController extends BaseController{
 	@Autowired
 	private CheckFacade checkFacade;
 	
+	/**
+	 *  改变审核状态
+	 * @return
+	 */
+	@RequestMapping(value = "passOrFail")
+	@ResponseBody
+	public PageData passOrFail() {
+		PageData pd = this.getPageData();
+		Integer id = Integer.parseInt(pd.getString("id"));
+		Integer status = Integer.parseInt(pd.getString("status"));
+		checkFacade.changeStatus(pd);
+		// pd = checkFacade.changeStatus(id);
+		System.out.println("id+" + id);
+		System.out.println("status+" + status);
+		return pd;
+	}
+	
+	/**
+	 *  查看品牌信息返回数据
+	 * @return
+	 */
+	@RequestMapping(value = "lookBrand")
+	@ResponseBody
+	public PageData lookBrand() {
+		PageData pd = this.getPageData();
+		Integer id = Integer.parseInt(pd.getString("id"));
+		pd = checkFacade.getBrandById(id);
+		System.out.println("id+" + id);
+		return pd;
+	}
+	
+	/**
+	 * 跳转到审核页面
+	 */
 	 @RequestMapping(value = "check") 
 	 public ModelAndView check() {
 		 ModelAndView mv = this.getModelAndView(); 

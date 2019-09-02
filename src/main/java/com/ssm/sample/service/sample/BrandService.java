@@ -9,6 +9,17 @@ import com.ssm.sample.service.base.BaseService;
 
 @Service("brandService")
 public class BrandService extends BaseService{
+	/* 获取表中字段名 */
+	public List<String> getAllColumn() {
+		List<String> list = this.sqlSessionTemplate.selectList("sample.brandMapper.getAllColumn");
+		return list;
+	} 
+	
+	/* 获取全部信息 */
+	public List<PageData> getAllInfo(){
+		List<PageData> list = this.sqlSessionTemplate.selectList("sample.brandMapper.getAllInfo");
+		return list;
+	}
 	
 	//添加拓展联系人，并获得联系人id
 	public Integer getIdByContacter(PageData pd){

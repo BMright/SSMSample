@@ -11,6 +11,9 @@
 <head>
 <meta charset="utf-8" />
 <title>品牌审核</title>
+<link rel="stylesheet" href="<%=basePath%>css/brand/check.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="<%= basePath %>/css/pop_all.css">
+<script type="text/javascript" src="<%= basePath %>/js/pop_all.js"></script>
 <script>
 	//当全选按钮，选中时，所有复选框被选中，当全选按钮不被选中时，所有的也不被选中
 	function funSelAll() {
@@ -46,7 +49,7 @@
 			}
 		}
 	}
-	
+
 	/*加载一级业态下拉选*/
 	$(function () {
 		$.ajax({
@@ -120,7 +123,7 @@
 	        }
 	    });
 	};
-	
+
 	$(document).ready(function(){
 		/* 提交按钮 */
 		$('#sub').click(function(){
@@ -138,18 +141,58 @@
 		});
 		
 	});
+	
 	//查看按钮触发事件
 	function look(brand_id){
-		alert(brand_id);
+		alert("brand_id:" + brand_id);
+		document.getElementById('light').style.display='block';
+		document.getElementById('fade').style.display='block';
+		$.ajax({
+	        type: "post",
+	        url: "<%=path%>/check/lookBrand",
+	        data: {"id": brand_id},
+	        success: function (data) {
+	            document.getElementById("ch_name").innerHTML = data.ch_name;
+	            document.getElementById("en_name").innerHTML = data.en_name;
+	            document.getElementById("brand_alias").innerHTML = data.brand_alias;
+	            document.getElementById("brand_grade").innerHTML = data.brand_grade;
+	            document.getElementById("running_type").innerHTML = data.running_type;
+	            document.getElementById("brand_type").innerHTML = data.brand_type;
+	            document.getElementById("firstClass_format").innerHTML = data.firstClass_format;
+	            document.getElementById("secondClass_format").innerHTML = data.secondClass_format;
+	            document.getElementById("thirdClass_format").innerHTML = data.thirdClass_format;
+	            document.getElementById("official_website").innerHTML = data.official_website;
+	            document.getElementById("headquarters_telephone").innerHTML = data.headquarters_telephone;
+	            $("#pop_image").attr('src',data.brand_logo); 
+	            /* document.getElementById("pop_image").src = data.brand_logo; */
+	        },
+	        error: function () {
+	            alert("error");
+	        }
+	    });
 	};
 	//通过和拒绝按钮触发事件
-	function check(brand_id){
-		alert(brand_id);
+	function check(brand_id,status){
+		alert("brand_id:" + brand_id + "\nstatus:" + status);
+		$.ajax({
+	        type: "post",
+	        url: "<%=path%>/check/passOrFail",
+	        data: {
+	        	"id": brand_id,
+	        	"status":status},
+	        success: function (data) {
+	            if(status == 1){
+	            	alert("审核通过！");
+	            }else if(status == 0){
+	            	alert("审核未通过！");
+	            }
+	        },
+	        error: function () {
+	            alert("error");
+	        }
+	    });
 	};
-	
 </script>
-<link rel="stylesheet" href="<%=basePath%>css/brand/check.css"
-	type="text/css" />
 </head>
 <body style="background: #F5F4F3">
 <div id="top">
@@ -410,10 +453,10 @@
 						<c:forEach items="${brandList}" var="row" varStatus="vs">
 							<!--  varStatus="vs" -->
 							<tr>
+								<td>${row.firstClass_format }</td>
+								<td>${row.secondClass_format }</td>
+								<td>${row.brand_grade }</td>
 								<td>${row.ch_name }</td>
-								<td>${row.en_name }</td>
-								<td>${row.brand_alias }</td>
-								<td>${row.first_letter }</td>
 								<td>${row.maintainer }</td>
 								<td>${row.checkcontent_type }</td>
 								<td>${row.submit_time }</td>
@@ -421,8 +464,8 @@
 								<td>
 								<!-- onclick="check(${row.ch_name})" -->
 									<a href="javascript:look(${row.brand_id })" style="color: #034D98;" >查看</a> 
-									<a href="javascript:check(${row.brand_id })" style="color: #034D98;" >通过</a> 
-									<a href="javascript:check(${row.brand_id })" style="color: #034D98;" >拒绝</a>
+									<a href="javascript:check(${row.brand_id },1)" style="color: #034D98;" >通过</a> 
+									<a href="javascript:check(${row.brand_id },0)" style="color: #034D98;" >拒绝</a>
 								</td>
 							</tr>
 						</c:forEach>
@@ -431,17 +474,44 @@
 				<div class="buttom" style="text-align: center">
 					<div>${page.pageStr}</div>
 				</div>
-
 				<a href="#">
 					<div class="up">^</div>
 				</a>
-
 				<hr style="background-color: blue; height: 3px;" />
 				<div class="end">利林置业商业地产综合业务管理平台·商家品牌库 COPYRIGHT @ 2016 ALL
 					RIGHT RESSRVED</div>
 			</div>
 		</form>
 	</div>
-
+	
+	<div id="light" class="white_content">
+		<div class="pop_top">
+			<span style="color:white;margin-left:20px;">品牌审核</span>
+			<a class="pop_close" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">×</a>
+		</div>
+		<div class="pop_addMain">
+			<form class="form_addMain">
+				<span>姓名：<label id="ch_name"></label></span> 
+				<span style="float:right">英文名：<label id="en_name"></label></span><br/>
+				<span>别名：<label id="brand_alias"></label></span>
+				<span style="float:right">品牌等级：<label id="brand_grade"></label></span><br/>
+				<span style="margin:0 0 0 -40px">
+					一级业态：<label id="firstClass_format"></label>&emsp;
+					二级业态：<label id="secondClass_format"></label>&emsp;
+					三级业态：<label id="thirdClass_format"></label>&emsp;
+				</span><br/>
+				<span style="margin:0 0 0 -40px">运营方式：<label id="running_type"></label></span> 
+				<span style="float:right">品牌类型：<label id="brand_type"></label></span><br/>
+				<span style="margin:0 0 0 -40px">品牌官网：<label id="official_website"></label></span><br/>
+				<span style="line-height:120px;margin:0 0 0 -40px">
+					品牌logo：<img id="pop_image" src="<%=basePath %>imgs/brandAdd/add.jpg" style="cursor:pointer;vertical-align:top;" width="150" height="100" /><!-- onclick="F_Open_dialog()" -->
+					<input id="btn_file" type="file" style="display:none" onchange="selectImage(this);" /></span><br/>
+				<span style="line-height:40px;margin:0 0 0 -90px">总部电话：<label id="headquarters_telephone"></label></span><br/>
+			</form>
+		</div>
+		
+	</div>
+	<div id="fade" class="black_overlay"></div>
+	
 </body>
 </html>

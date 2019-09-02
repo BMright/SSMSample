@@ -8,8 +8,8 @@
 	</select>
 	
 	<!-- 获取二级业态总数量 -->
-	<select id="getSecondCheckCount" resultType="Integer">  
- 		SELECT COUNT(*) FROM second_classformat 
+	<select id="getSecondCheckCount" resultType="Integer">
+ 		SELECT COUNT(*) FROM second_classformat
 	</select>
 	
 	<!-- 获取三级业态总数量 -->

@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sample.checkMapper">
+	
+	<!-- 通过id改变品牌审核状态 -->
+	<update id="changeStatus" parameterType="pd">
+		update brand
+		<set>
+			check_status = #{status}
+		</set>
+		<where>
+			brand_id = #{id}
+		</where>
+	</update>
+	
+	<!-- 通过id获取品牌信息 -->
+	<select id="getBrandById" parameterType="Integer" resultType="pd">
+		SELECT * FROM brand where brand_id = #{id}
+	</select>
 
 		<!-- 通过查询条件取得品牌总数 -->
 	<select id="getCheckCount" parameterType="pd" resultType="Integer">  

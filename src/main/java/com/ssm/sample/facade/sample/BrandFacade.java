@@ -16,6 +16,17 @@ public class BrandFacade extends BaseFacade{
 	@Autowired
 	private BrandService brandService;
 	
+	/* 获取表中字段名 */
+	public List<String> getAllColumn() {
+		List<String> pd = brandService.getAllColumn();
+		return pd;
+	} 
+	
+	/* 获取全部信息 */
+	public List<PageData> getAllInfo(){
+		List<PageData> list = brandService.getAllInfo();
+		return list;
+	}
 
 	//设置分页Page参数
 	public Page setParameterOfPage(Page page,PageData pd) {
@@ -24,7 +35,7 @@ public class BrandFacade extends BaseFacade{
 		//设置pd查询条件
 		page.setPd(pd);
 		//设置每页显示记录数
-		page.setShowCount(3);//Integer.parseInt(pd.getString("showCount"))
+		page.setShowCount(Integer.parseInt(pd.getString("showCount")));//Integer.parseInt(pd.getString("showCount"))
 		//设置当前页
 		page.setCurrentPage(page.getCurrentPage());
 		//设置总页数

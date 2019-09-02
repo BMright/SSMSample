@@ -16,6 +16,17 @@ public class CheckFacade extends BaseFacade{
 	@Autowired
 	private  CheckService checkService;
 
+	//通过id改变品牌审核状态
+	public void changeStatus(PageData pd) {
+		checkService.changeStatus(pd);
+	}
+	
+	//通过id查询品牌信息
+	public PageData getBrandById(Integer id) {
+		PageData pd = checkService.getBrandById(id);
+		return pd;
+	}
+	
 	//设置分页Page参数
 	public Page setParameterOfPage(Page page,PageData pd) {
 		//设置总条数
