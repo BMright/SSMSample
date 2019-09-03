@@ -9,6 +9,11 @@
 		AND table_schema = 'ssmdb'
 	</select>
 	
+	<!-- 获取全部扩展联系人信息 -->
+	<select id="getContactAllInfo" resultType="pd">
+		select * from expanding_contact
+	</select>
+	
 	<!-- 获取全部信息 -->
 	<select id="getAllInfo" resultType="pd">
 		select * from brand

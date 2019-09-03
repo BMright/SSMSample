@@ -15,6 +15,13 @@ public class BrandService extends BaseService{
 		return list;
 	} 
 	
+	/* 获取全部扩展联系人信息 */
+	/* 获取全部信息 */
+	public List<PageData> getContactAllInfo(){
+		List<PageData> list = this.sqlSessionTemplate.selectList("sample.brandMapper.getContactAllInfo");
+		return list;
+	}
+	
 	/* 获取全部信息 */
 	public List<PageData> getAllInfo(){
 		List<PageData> list = this.sqlSessionTemplate.selectList("sample.brandMapper.getAllInfo");
